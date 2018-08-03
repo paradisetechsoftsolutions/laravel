@@ -1,10 +1,10 @@
 <header class="top-menu-header">
     <!-- Logo -->
-    <a href="index.html" class="logo">
+    <a href="{{ route('admin.dashboard.index') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><img src="resources/img/icons/logo-mini.png" class="img-circle" alt="Logo Mini"/></span>
+        <span class="logo-mini"><i class="fa fa-user-secret fa-2x"></i></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Taxi</b>Admin</span>
+        <span class="logo-lg"><b>Admin</b></span>
     </a>
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top">

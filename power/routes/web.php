@@ -18,9 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 
-
 //auth
-
 Route::group(['middleware' => 'auth'], function () {		
 	//profile 
 	Route::get('/profile', 'ProfileController@index')->name('profile.index');
@@ -30,16 +28,21 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-
 //admin
-
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 	Route::group(['middleware' => 'check-permission:admin'], function () {
 		
 		//dashboard 
 		Route::get('/dashboard', 'Admin\DashboardController@index')->name('admin.dashboard.index');
+		
 		//programs
 		Route::resource('/programs', 'Admin\ProgramsController');
+
+		//programs prefix
+		Route::group(['prefix' => 'programs/{slug}'], function () {
+			//modules
+			Route::resource('/modules', 'Admin\ModulesController');
+		});
 
 	});
 });

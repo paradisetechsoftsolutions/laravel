@@ -26,5 +26,5 @@
 
 
 </head>
-<body class="skin-red sidebar-mini">
+<body class="sidebar-mini skin-grey">
 	<div class="wrapper">

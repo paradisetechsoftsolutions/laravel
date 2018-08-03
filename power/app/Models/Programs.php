@@ -11,21 +11,27 @@ class Programs extends Model
 	*
 	* @var array
 	*/
-
-
-    //'title', 'slug', 'type', 'description', 'image', 'short_video', 'video', 'price', 'active',
     protected $fillable = [
-        'title', 'slug', 'type', 'description', 'price', 'active'
+        'title', 'slug', 'type', 'description', 'short_video', 'video', 'price', 'active'
     ];
 
 
     public static function boot()
     {
         parent::boot();
-
         static::saving(function ($model) {
+            //create dynamic slug
             $model->slug = str_slug($model->title);
         });
+    }
+
+
+    /**
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+    public function modules()
+    {
+        return $this->hasMany(Modules::class);
     }
 
 }

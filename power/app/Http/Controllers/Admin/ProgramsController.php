@@ -6,6 +6,7 @@ use App\Models\Programs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProgramsRequest;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProgramsController extends Controller
 {
@@ -45,6 +46,14 @@ class ProgramsController extends Controller
     public function store(ProgramsRequest $request)
     {
         $program = Programs::create($request->all());
+		//upload image
+        if ($request->file('image')) {
+        	$path = 'uploads/programs/';
+        	$image = $program->id.'.png';
+        	Image::make($request->file('image'))->resize(500, 500)->save($path.$image);
+        	Image::make($request->file('image'))->resize(250, 250)->save($path.'small/'.$image);
+		}
+
         $request->session()->flash('success', "Programs {$program->title} created!");
         return redirect()->route('programs.index');
     }
@@ -72,8 +81,30 @@ class ProgramsController extends Controller
     public function update(ProgramsRequest $request, Programs $program)
     {
         $program->update($request->all());
+
+        //upload image
+        if ($request->file('image')) {
+        	$path = 'uploads/programs/';
+        	$image = $program->id.'.png';
+        	Image::make($request->file('image'))->resize(500, 500)->save($path.$image);
+        	Image::make($request->file('image'))->resize(250, 250)->save($path.'small/'.$image);
+		}
+
         $request->session()->flash('success', "Programs {$program->title} updated!");
         return redirect()->route('programs.index');
+    }
+
+    /**
+	* Show the form for show the specified resource.
+	*
+	* @param  \App\Models\Programs $program
+	* @return \Illuminate\Http\Response
+	*/
+    public function show(Programs $program)
+    {
+    	$active = $this->active;
+		$title = $this->title;
+        return view('admin.programs.show', compact('program', 'active', 'title'));
     }
 
 	/**
