@@ -28,10 +28,10 @@ class Modules extends Model
     /**
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
     */
-    /*public function programs()
+    public function programs()
     {
         return $this->belongsTo(Programs::class);
-    }*/
+    }
 
 
 

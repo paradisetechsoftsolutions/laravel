@@ -1,5 +1,5 @@
-
 {!! Form::hidden('program_id', $program->id) !!}
+{!! Form::hidden('module_id', $module->id) !!}
 
 <div class="form-group {!! ($errors->has('title') ? 'has-error' : '') !!}">
     {!! Form::label('title','Title', ['class' => 'control-label']) !!}
@@ -12,6 +12,19 @@
     {!! Form::textarea('description', null, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'rows' => '4' ]) !!}
     {!! $errors->first('description', '<span class="help-block">:message</span>') !!}
 </div>
+
+<div id="add_new_chart"></div>
+
+<hr>
+<div class="form-group">
+    {!! Form::label('Add New Chart','Add New Chart', ['class' => 'control-label']) !!}
+</div>
+<div class="form-group">
+    <button type="button" class="btn btn-danger" onclick="newChart('video')"><i class="fa fa-youtube-play"></i> Add Video</button>
+    <button type="button" class="btn btn-warning" onclick="newChart('image')"><i class="fa fa-picture-o"></i> Add Image</button>
+    <button type="button" class="btn btn-info" onclick="newChart('file')"><i class="fa fa-paperclip"></i> Add File</button>
+</div> 
+<hr>
 
 <div class="form-group {!! ($errors->has('active') ? 'has-error' : '') !!}">
     {!! Form::label('active','Active', ['class' => 'control-label']) !!}</br>

@@ -12,7 +12,7 @@ class Programs extends Model
 	* @var array
 	*/
     protected $fillable = [
-        'title', 'slug', 'type', 'description', 'short_video', 'video', 'price', 'active'
+        'title', 'slug', 'description', 'short_video', 'video', 'price', 'active'
     ];
 
 

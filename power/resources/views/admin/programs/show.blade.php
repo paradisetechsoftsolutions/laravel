@@ -14,8 +14,7 @@
                     <div class="col-md-12">
                         <div class="box-header with-border">
                             <h3 class="box-title">{{ $program->title }}</h3>
-                            <div class="pull-right">
-		                        <a href="{{ route('programs.edit', $program->id) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
+                            <div class="pull-right">		                        
 
 		                        @if($program->active =='1')
 	                            <button class="btn btn-success">Active</button>
@@ -23,13 +22,13 @@
 		                        <button class="btn btn-danger">De-active</button>
 		                        @endif
 
-		                        <a href="{{ route('modules.create', $program->id) }}" class="btn btn-success"><i class="fa fa-plus"></i> Add Module</a>
+		                        <a href="{{ route('programs.edit', $program->id) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
+
+		                        <a href="{{ route('modules.index', $program->id) }}" class="btn btn-success">Module</a>
 
 	                    	</div>
                         </div>
 						<div class="col-md-8">
-							<strong>Type</strong>
-							<p>{{ $program->type }}</p>
 							<strong>Price</strong>
 							<p>$ {{ $program->price }}/-</p>
 							<strong>Short Video Link</strong>

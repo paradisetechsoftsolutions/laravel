@@ -7,15 +7,15 @@
             <div class="box box-form">
                 <div class="box-header">
                     <h3 class="box-title">Create {{ $title }}</h3>
-                    <a href="{{ route('modules.index', $program->id) }}" class="btn btn-success pull-right"><i class="fa fa-arrow-left"></i> Back</a>
+                    <a href="{{ route('chapters.index', [$program->id, $module->id]) }}" class="btn btn-success pull-right"><i class="fa fa-arrow-left"></i> Back</a>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="col-md-12">
                         
-                        {!! Form::open(['route' => ['modules.store', $program]]) !!}
+                        {!! Form::open(['route' => ['chapters.store', $program->id, $module->id]]) !!}
 
-                        @include('admin.modules.partials.form')
+                        @include('admin.chapters.partials.form')
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Create {{ $title }}</button>

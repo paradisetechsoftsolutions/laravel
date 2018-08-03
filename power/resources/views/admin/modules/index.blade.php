@@ -9,9 +9,9 @@
                 <div class="box-header">
                     <h3 class="box-title">List {{ $title }}</h3>
                     <div class="pull-right">
-                        <a href="{{ route('programs.show', $program_id) }}" class="btn btn-success"><i class="fa fa-arrow-left"></i> Back</a>
+                        <a href="{{ route('programs.show', $program->id) }}" class="btn btn-success"><i class="fa fa-arrow-left"></i> Back</a>
 
-                        <a href="{{ route('modules.create', $program_id) }}" class="btn btn-success"><i class="fa fa-plus"></i> Add</a>
+                        <a href="{{ route('modules.create', $program->id) }}" class="btn btn-success"><i class="fa fa-plus"></i> Add</a>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -36,13 +36,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('modules.show', [$program_id, $module->id]) }}"">
+                                    <a href="{{ route('modules.show', [$program->id, $module->id]) }}"">
                                         <i class="fa fa-list info"></i>
                                     </a>  
-                                    <a href="{{ route('modules.edit', [$program_id, $module->id]) }}">
+                                    <a href="{{ route('modules.edit', [$program->id, $module->id]) }}">
                                         <i class="fa fa-pencil info"></i>
                                     </a>                            
-                                    <a data-method="Delete" data-confirm="Are you sure?" href="{{ route('modules.destroy', [$program_id, $module->id]) }}">
+                                    <a data-method="Delete" data-confirm="Are you sure?" href="{{ route('modules.destroy', [$program->id, $module->id]) }}">
                                         <i class="fa fa-trash-o danger"></i>
                                     </a>
                                 </td>

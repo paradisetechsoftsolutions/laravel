@@ -53,7 +53,6 @@ class ProgramsController extends Controller
         	Image::make($request->file('image'))->resize(500, 500)->save($path.$image);
         	Image::make($request->file('image'))->resize(250, 250)->save($path.'small/'.$image);
 		}
-
         $request->session()->flash('success', "Programs {$program->title} created!");
         return redirect()->route('programs.index');
     }
@@ -81,7 +80,6 @@ class ProgramsController extends Controller
     public function update(ProgramsRequest $request, Programs $program)
     {
         $program->update($request->all());
-
         //upload image
         if ($request->file('image')) {
         	$path = 'uploads/programs/';
@@ -89,7 +87,6 @@ class ProgramsController extends Controller
         	Image::make($request->file('image'))->resize(500, 500)->save($path.$image);
         	Image::make($request->file('image'))->resize(250, 250)->save($path.'small/'.$image);
 		}
-
         $request->session()->flash('success', "Programs {$program->title} updated!");
         return redirect()->route('programs.index');
     }

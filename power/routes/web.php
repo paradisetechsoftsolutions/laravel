@@ -39,10 +39,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 		Route::resource('/programs', 'Admin\ProgramsController');
 
 		//programs prefix
-		Route::group(['prefix' => 'programs/{slug}'], function () {
+		Route::group(['prefix' => 'programs/{program}'], function () {
 			//modules
 			Route::resource('/modules', 'Admin\ModulesController');
+
+			//modules prefix
+			Route::group(['prefix' => 'modules/{module}'], function () {
+				//modules
+				Route::resource('/chapters', 'Admin\ChaptersController');
+			});	
 		});
+
+
+		
 
 	});
 });

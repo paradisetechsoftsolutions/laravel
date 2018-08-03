@@ -4,12 +4,6 @@
     {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
 </div>
 
-<div class="form-group {!! ($errors->has('type') ? 'has-error' : '') !!}">
-    {!! Form::label('type','Type', ['class' => 'control-label']) !!}
-    {!! Form::text('type', null, ['class' => 'form-control' . ($errors->has('type') ? ' is-invalid' : '') ]) !!}
-    {!! $errors->first('type', '<span class="help-block">:message</span>') !!}
-</div>
-
 <div class="form-group {!! ($errors->has('price') ? 'has-error' : '') !!}">
     {!! Form::label('price','Price', ['class' => 'control-label']) !!}
     <div class="input-group">

@@ -8,7 +8,11 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">List {{ $title }}</h3>
-                    <a href="{{ route('programs.create') }}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add</a>
+                    <div class="pull-right">
+                        <a href="{{ route('modules.show', [$program->id, $module->id]) }}" class="btn btn-success"><i class="fa fa-arrow-left"></i> Back</a>
+
+                        <a href="{{ route('chapters.create', [$program->id, $module->id]) }}" class="btn btn-success"><i class="fa fa-plus"></i> Add</a>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
@@ -17,30 +21,28 @@
                             <tr>
                                 <th>Sr.</th>
                                 <th>Title</th>
-                                <th>Price</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
-                            @foreach($programs as $k => $program)
+                            @foreach($chapters as $k => $chapter)
                             <tr>
                                 <td>{{ $k+1 }}</td>
-                                <td>{{ $program->title }}</td>
-                                <td>$ {{ $program->price }}</td>
+                                <td>{{ $chapter->title }}</td>
                                 <td>
-                                    @if($program->active =='1')
+                                    @if($chapter->active =='1')
                                         <i class="fa fa-check success"></i>
                                     @else
                                         <i class="fa fa-times danger"></i>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('programs.show', $program->id) }}"">
+                                    <a href="{{ route('chapters.show', [$program->id, $module->id, $chapter->id]) }}"">
                                         <i class="fa fa-list info"></i>
                                     </a>  
-                                    <a href="{{ route('programs.edit', $program->id) }}"">
+                                    <a href="{{ route('chapters.edit', [$program->id, $module->id, $chapter->id]) }}">
                                         <i class="fa fa-pencil info"></i>
                                     </a>                            
-                                    <a data-method="Delete" data-confirm="Are you sure?" href="{{ route('programs.destroy', $program->id) }}">
+                                    <a data-method="Delete" data-confirm="Are you sure?" href="{{ route('chapters.destroy', [$program->id, $module->id, $chapter->id]) }}">
                                         <i class="fa fa-trash-o danger"></i>
                                     </a>
                                 </td>
