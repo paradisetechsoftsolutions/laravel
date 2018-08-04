@@ -24,7 +24,7 @@
                             @foreach($programs as $k => $program)
                             <tr>
                                 <td>{{ $k+1 }}</td>
-                                <td>{{ $program->title }}</td>
+                                <td><a href="{{ route('programs.show', $program->id) }}"">{{ $program->title }}</a></td>
                                 <td>$ {{ $program->price }}</td>
                                 <td>
                                     @if($program->active =='1')

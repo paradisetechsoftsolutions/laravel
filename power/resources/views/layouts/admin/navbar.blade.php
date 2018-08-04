@@ -32,7 +32,7 @@
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <span class="hidden-xs">{{ Auth::user()->fname }} {{ Auth::user()->lname }}<i class="fa fa-angle-down pull-right"></i></span>
                         <!-- The user image in the navbar-->
-                        <img src="resources/img/icons/icon-user.png" class="user-image" alt="User Image">
+                        <img src="{{ asset('admin/resources/img/icons/icon-user.png') }}" class="user-image" alt="User Image">
                     </a>
                     <ul class="dropdown-menu user-menu animated flipInY">
                         <li><a href="{{ route('profile.index') }}"><i class="ti-user"></i> Profile</a></li>

@@ -27,7 +27,7 @@
                             @foreach($chapters as $k => $chapter)
                             <tr>
                                 <td>{{ $k+1 }}</td>
-                                <td>{{ $chapter->title }}</td>
+                                <td><a href="{{ route('chapters.show', [$program->id, $module->id, $chapter->id]) }}">{{ $chapter->title }}</a></td>
                                 <td>
                                     @if($chapter->active =='1')
                                         <i class="fa fa-check success"></i>
@@ -36,7 +36,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('chapters.show', [$program->id, $module->id, $chapter->id]) }}"">
+                                    <a href="{{ route('chapters.show', [$program->id, $module->id, $chapter->id]) }}">
                                         <i class="fa fa-list info"></i>
                                     </a>  
                                     <a href="{{ route('chapters.edit', [$program->id, $module->id, $chapter->id]) }}">

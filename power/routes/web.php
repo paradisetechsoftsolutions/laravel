@@ -50,8 +50,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 			});	
 		});
 
-		//upload 
+		//upload images
 		Route::post('/upload_image', 'Admin\ChaptersController@uploadImage')->name('admin.upload_image');
+		//upload files
+		Route::post('/upload_files', 'Admin\ChaptersController@uploadFiles')->name('admin.upload_files');
 		
 
 	});

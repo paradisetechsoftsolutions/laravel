@@ -81,8 +81,37 @@ class ChaptersController extends Controller
         if ($request->hasFile('file')){
 	        $image = $request->file('file');
 	        $filename = uniqid(str_random(12)) . '.' . $image->getClientOriginalExtension();
-	        $path = 'uploads/chapters/'.$filename;
+	        $path = 'uploads/chapters/images/'.$filename;
 	        Image::make($image)->resize(500, 300)->save($path);
+	        return response()->json(['filename'=>$filename, 'response'=>true]);
+	    }
+    }
+
+    /**
+	* Store a newly created resource in storage.
+	*
+	* upload files using ajax
+	* @param Request $request
+	* @return void
+	*/
+    public function uploadFiles(Request $request)
+    {
+
+    	$validator = Validator::make($request->all(),
+			['file' => 'required|mimes:pdf,txt,docx,csv|max:4096']			
+		);
+		if ($validator->fails()){
+			return array(
+			'response' => false,
+			'errors' => $validator->getMessageBag()->toArray()
+			);
+		}
+
+        if ($request->hasFile('file')){
+	        $file = $request->file('file');
+	        $filename = uniqid(str_random(12)) . '.' . $file->getClientOriginalExtension();
+	        $path = 'uploads/chapters/files/';
+	        $request->file('file')->move($path, $filename);
 	        return response()->json(['filename'=>$filename, 'response'=>true]);
 	    }
     }

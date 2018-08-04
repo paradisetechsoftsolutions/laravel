@@ -27,7 +27,7 @@
                             @foreach($modules as $k => $module)
                             <tr>
                                 <td>{{ $k+1 }}</td>
-                                <td>{{ $module->title }}</td>
+                                <td><a href="{{ route('modules.show', [$program->id, $module->id]) }}">{{ $module->title }}</a></td>
                                 <td>
                                     @if($module->active =='1')
                                         <i class="fa fa-check success"></i>
@@ -36,7 +36,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('modules.show', [$program->id, $module->id]) }}"">
+                                    <a href="{{ route('modules.show', [$program->id, $module->id]) }}">
                                         <i class="fa fa-list info"></i>
                                     </a>  
                                     <a href="{{ route('modules.edit', [$program->id, $module->id]) }}">
