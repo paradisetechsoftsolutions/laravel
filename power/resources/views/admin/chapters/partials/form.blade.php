@@ -32,3 +32,7 @@
     {!! Form::radio('active', 0) !!} No
     {!! $errors->first('active', '<span class="help-block">:message</span>') !!}
 </div>
+
+@section('script')
+<script src="{{ asset('js/chapter_chart.js') }}"></script>
+@stop

@@ -8,6 +8,8 @@ use App\Models\Chapters;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ChaptersRequest;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Validator;
 
 class ChaptersController extends Controller
 {
@@ -54,6 +56,42 @@ class ChaptersController extends Controller
         $request->session()->flash('success', "Chapter {$chapter->title} created!");
         return redirect()->route('chapters.index', [$program->id, $module->id]);
     }
+
+
+    /**
+	* Store a newly created resource in storage.
+	*
+	* upload images using ajax
+	* @param Request $request
+	* @return void
+	*/
+    public function uploadImage(Request $request)
+    {
+
+    	$validator = Validator::make($request->all(),
+			['file' => 'required|mimes:jpeg,jpg,png|max:1024']			
+		);
+		if ($validator->fails()){
+			return array(
+			'response' => false,
+			'errors' => $validator->getMessageBag()->toArray()
+			);
+		}
+
+        if ($request->hasFile('file')){
+	        $image = $request->file('file');
+	        $filename = uniqid(str_random(12)) . '.' . $image->getClientOriginalExtension();
+	        $path = 'uploads/chapters/'.$filename;
+	        Image::make($image)->resize(500, 300)->save($path);
+	        return response()->json(['filename'=>$filename, 'response'=>true]);
+	    }
+    }
+
+
+
+
+
+
 
 
 

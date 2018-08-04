@@ -7,37 +7,58 @@ use Illuminate\Foundation\Http\FormRequest;
 class ProgramsRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+    * Determine if the user is authorized to make this request.
+    *
+    * @return bool
+    */
     public function authorize()
     {
         return true;
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+    * Get the validation rules that apply to the request.
+    *
+    * @return array
+    */
     public function rules()
     {
-        $segment = '';
-        $image = 'required|';
-        if($this->segment(3)){
-            $segment = ',id,'.$this->segment(3);
-            $image = '';
+        switch($this->method())
+        {
+            case 'GET':
+            case 'DELETE':
+            {
+                return [];
+            }
+            case 'POST':
+            {
+                return [
+                    'title' => 'required|unique:programs,title',
+                    'price' => 'required',
+                    'image' => 'required|mimetypes:image/jpeg,image/png,image/jpg|max:1024',
+                    'short_video' => 'required',
+                    'video' => 'required',
+                    'description' => 'required',
+                    'active' => 'required'
+                ];
+            }
+            case 'PUT':
+            case 'PATCH':
+            {
+                return [
+                    'title' => 'required|unique:programs,title,'.$this->program->id,
+                    'price' => 'required',
+                    'image' => 'mimetypes:image/jpeg,image/png,image/jpg|max:1024',
+                    'short_video' => 'required',
+                    'video' => 'required',
+                    'description' => 'required',
+                    'active' => 'required'
+                ];
+            }
+            default:break;
         }
-
-        return [
-            'title' => 'sometimes|required|unique:programs'.$segment,
-            'price' => 'required',
-            'image' => $image.'mimetypes:image/jpeg,image/png,image/jpg|max:1024',
-            'short_video' => 'required',
-            'video' => 'required',
-            'description' => 'required',
-            'active' => 'required'
-        ];
     }
+
+
+
 }

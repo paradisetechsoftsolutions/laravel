@@ -26,6 +26,18 @@ class UploadController extends Controller
 		$filename = str_slug($image[0], '-').'-'.date('Y-m-d').'-'.$this->auth('id').'-'.uniqid().'.'.$extension;
 		$request->file('file')->move($dir, $filename);
 		return $filename;
+
+
+		if ($request->hasFile('image1')){
+	        $image = $request->file('image1');
+	        $filename = str_random(12) . '.' . $image->getClientOriginalExtension();
+	        $location = public_path('collage/' . $filename);
+	        Image::make($image)->save($location);
+	        $collage->image1 = $filename;
+	        // $collage->save();
+	    }
+
+    
 	}
 	
 	/*----remove files----*/

@@ -50,8 +50,8 @@ class ProgramsController extends Controller
         if ($request->file('image')) {
         	$path = 'uploads/programs/';
         	$image = $program->id.'.png';
-        	Image::make($request->file('image'))->resize(500, 500)->save($path.$image);
-        	Image::make($request->file('image'))->resize(250, 250)->save($path.'small/'.$image);
+        	Image::make($request->file('image'))->resize(500, 350)->save($path.$image);
+        	Image::make($request->file('image'))->resize(250, 150)->save($path.'small/'.$image);
 		}
         $request->session()->flash('success', "Programs {$program->title} created!");
         return redirect()->route('programs.index');

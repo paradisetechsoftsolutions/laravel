@@ -7,10 +7,10 @@ use Illuminate\Foundation\Http\FormRequest;
 class ChaptersRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+    * Determine if the user is authorized to make this request.
+    *
+    * @return bool
+    */
     public function authorize()
     {
         return true;
@@ -23,15 +23,31 @@ class ChaptersRequest extends FormRequest
     */
     public function rules()
     {
-        $segment = '';
-        if($this->segment(3)){
-            $segment = ',id,'.$this->segment(3);
+        switch($this->method())
+        {
+            case 'GET':
+            case 'DELETE':
+            {
+                return [];
+            }
+            case 'POST':
+            {
+                return [
+                    'title' => 'required|unique:chapters,title',
+                    'description' => 'required',
+                    'active' => 'required'
+                ];
+            }
+            case 'PUT':
+            case 'PATCH':
+            {
+                return [
+                    'title' => 'required|unique:chapters,title,'.$this->chapter->id,
+                    'description' => 'required',
+                    'active' => 'required'
+                ];
+            }
+            default:break;
         }
-
-        return [
-            'title' => 'sometimes|required|unique:programs'.$segment,
-            'description' => 'required',
-            'active' => 'required'
-        ];
     }
 }
