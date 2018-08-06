@@ -7,15 +7,15 @@
             <div class="box box-form">
                 <div class="box-header">
                     <h3 class="box-title">Edit {{ $title }}</h3>
-                    <a href="{{ route('modules.index', $module->program_id) }}" class="btn btn-success pull-right"><i class="fa fa-arrow-left"></i> Back</a>
+                    <a href="{{ route('chapters.index', [$program->id, $module->id]) }}" class="btn btn-success pull-right"><i class="fa fa-arrow-left"></i> Back</a>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="col-md-12">
                         
-                        {{ Form::model($module, ['route' => ['modules.update', $module->program_id, $module->id], 'method' => 'PATCH']) }}
+                        {{ Form::model($chapter, ['route' => ['chapters.update', $program->id, $module->id, $chapter->id], 'method' => 'PATCH']) }}
 
-                        @include('admin.modules.partials.form')
+                        @include('admin.chapters.partials.form')
                         
                         <div class="form-group">
                             <button type="submit" class="btn btn-warning">Update {{ $title }}</button>

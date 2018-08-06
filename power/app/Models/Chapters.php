@@ -25,4 +25,13 @@ class Chapters extends Model
         });
     }
 
+
+    /**
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+    public function chaptersupload()
+    {
+        return $this->hasMany(ChaptersUploads::class);
+    }
+
 }

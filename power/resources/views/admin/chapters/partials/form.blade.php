@@ -13,6 +13,19 @@
     {!! $errors->first('description', '<span class="help-block">:message</span>') !!}
 </div>
 
+@if($check=='edit')
+
+@foreach($chapter->chaptersupload as $cha)
+          {{ $cha->name}} 
+@endforeach
+
+
+
+@endif
+
+
+
+
 <div id="add_new_chart"></div>
 
 <hr>

@@ -5,6 +5,7 @@
 * use only admin
 */
 var HTML;
+var unsaved = false;
 //newChart
 function newChart(type){
 	switch(type){
@@ -18,6 +19,7 @@ function newChart(type){
 		fileFun();	
 		break;
 	}
+	unsaved = true;
 }
 
 //add video html
@@ -26,8 +28,11 @@ function videoFun(){
 	<div class="form-group"><hr>\
 		<label>Add Video Link</label>\
 		<span class="pull-right removeHtml"><i class="fa fa-trash"></i></span>\
-		<input type="url" class="form-control" name="name[]" required>\
-		<input type="hidden" name="type[video]">\
+		<div class="input-group">\
+			<input type="url" class="form-control" required>\
+			<div class="input-group-addon video btn btn-success">Get</div>\
+		</div>\
+		<span class="help-block"></span>\
 	</div>\
 	';
 	jQuery('#add_new_chart').append(HTML);
@@ -59,12 +64,41 @@ function fileFun(){
 	jQuery('#add_new_chart').append(HTML);
 }
 
-//remove html
+/**
+*
+* remove html
+* for chapters page
+* use only admin
+*/
 jQuery(document).on('click', '.removeHtml', function(){
-	jQuery(this).parent('.form-group').remove();
+	var $this = jQuery(this);
+	var $click = $this.parent('.form-group').find("input[type=hidden]");
+	var value = $click.val();
+	var type = $click.attr('data-type');
+
+	if(!value){
+		$this.parent('.form-group').remove();
+		return;
+	}
+	if(type=='images' || type=='files'){		
+		var formData = {value:value, type:type};
+		var postUrl = "admin/delete_files";
+
+		ajaxRequest1(formData, postUrl, function(res) {
+			//processing the data
+			if(res.response===true){
+				$this.parent('.form-group').remove();
+			}
+			if(res.response===false){
+				alert(type+' not deleted, try again');
+			}
+		});
+	}
+	else {
+		$click.parent('.form-group').remove();
+		return;
+	}
 });
-
-
 
 /**
 *
@@ -78,12 +112,16 @@ jQuery(document).on('change', '.images', function () {
 		$this.parents('.form-group').removeClass('has-error');
 		$this.parents('.form-group').find('.help-block').html('');
 		var fileData = $this.prop('files')[0];
+		var formData = new FormData();
+		formData.append('file', fileData);
+
 		var postUrl = "admin/upload_image";
-		upload(fileData, postUrl, function(res) {
+		ajaxRequest(formData, postUrl, function(res) {
 			//processing the data
 			$this.val('');
 			if(res.response===true){
 				$this.hide();
+				$this.after('<input type="hidden" data-type="images" name="images[]" value="'+res.filename+'">');
 				$this.after('<img src="'+BASE_URL+'uploads/chapters/images/'+res.filename+'">');
 			}
 			if(res.response===false){
@@ -109,12 +147,16 @@ jQuery(document).on('change', '.files', function () {
 		$this.parents('.form-group').removeClass('has-error');
 		$this.parents('.form-group').find('.help-block').html('');
 		var fileData = $this.prop('files')[0];
+		var formData = new FormData();
+		formData.append('file', fileData);
+
 		var postUrl = "admin/upload_files";
-		upload(fileData, postUrl, function(res) {
+		ajaxRequest(formData, postUrl, function(res) {
 			//processing the data
 			$this.val('');
 			if(res.response===true){
 				$this.hide();
+				$this.after('<input type="hidden" data-type="files" name="filesdata[]" value="'+res.filename+'">');
 				$this.after('<a href="'+BASE_URL+'uploads/chapters/files/'+res.filename+'">'+res.filename+'</a>');
 			}
 			if(res.response===false){
@@ -131,13 +173,71 @@ jQuery(document).on('change', '.files', function () {
 
 /**
 *
+* get video link
+* for chapters page
+* use only admin
+*/
+jQuery(document).on('click', '.video', function () {
+	var $click = jQuery(this);
+	var $this = $click.parents('.form-group');
+	$this.removeClass('has-error');
+	$this.find('.help-block').html('');
+	var fileData = $this.find('input[type=url]').val();
+	if(!fileData){
+		$this.addClass('has-error');
+		$this.find('.help-block').html('please add video url link');
+		return;
+	}
+	fileData = parseVideo(fileData);
+	if(fileData){
+		var src = jQuery(fileData).attr('src');
+		$click.parents('.input-group').hide();		
+		$click.parents('.input-group').after(fileData);
+		$this.after('<input type="hidden" data-type="video" name="videos[]" value="'+src+'">');
+	}
+	else {
+		$this.addClass('has-error');
+		$this.find('.help-block').html('please add video url link');
+	}
+});
+
+
+/**
+*
+* get youtube/ vimeo video embeded link
+* for chapters page
+* use only admin
+*/
+
+
+function parseVideo (input) {
+	var pattern1 = /(?:http?s?:\/\/)?(?:www\.)?(?:vimeo\.com)\/?(.+)/g;
+	var pattern2 = /(?:http?s?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g;
+
+    if (pattern2.test(input)) {
+		var replacement = '<iframe width="100%" height="345" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
+		var input = input.replace(pattern2, replacement);
+		// For start time, turn get param & into ?
+		var input = input.replace('&amp;t=', '?t=');
+		return input;
+	}
+
+	else if (pattern1.test(input)) {
+		var replacement = '<iframe width="100%" height="345" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		var input = input.replace(pattern1, replacement);
+		return input;
+	}
+	return;
+}
+
+
+/**
+*
 * send ajax requests
 * for chapters page
 * use only admin
 */
-function upload(fileData, postUrl, callback) {
-	var formData = new FormData();
-	formData.append('file', fileData);
+function ajaxRequest(formData, postUrl, callback) {
 	var res;
 	jQuery.ajax({
         headers: { 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content') }, 
@@ -153,3 +253,37 @@ function upload(fileData, postUrl, callback) {
         }
     });
 }
+
+/**
+*
+* send ajax requests without contentType
+* for chapters page
+* use only admin
+*/
+function ajaxRequest1(formData, postUrl, callback) {
+	var res;
+	jQuery.ajax({
+        headers: { 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content') }, 
+        url: BASE_URL+postUrl,
+        type: 'POST',
+        data : formData,
+        success: function (response) {
+        	res = response;
+        	callback(res);
+        }
+    });
+}
+
+
+/**
+*
+* page refresh requests
+* if html append
+* show alert for permission
+*/
+function unloadPage(){ 
+    if(unsaved){
+    return "Are you sure to reload this page?";
+    }
+}
+window.onbeforeunload = unloadPage;

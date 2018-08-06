@@ -54,6 +54,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 		Route::post('/upload_image', 'Admin\ChaptersController@uploadImage')->name('admin.upload_image');
 		//upload files
 		Route::post('/upload_files', 'Admin\ChaptersController@uploadFiles')->name('admin.upload_files');
+		//delete uploaded files using ajax
+		Route::post('/delete_files', 'Admin\ChaptersController@deleteFiles')->name('admin.delete_files');
 		
 
 	});

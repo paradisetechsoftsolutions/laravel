@@ -82,3 +82,8 @@
 .show-image img {
     margin-top: 10px;
 }
+
+
+.input-group-addon.btn.btn-success {
+    background-color: #259b24;
+}
