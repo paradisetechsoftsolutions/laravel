@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home.index');
 
+//login pages
 Auth::routes();
 
 
@@ -56,6 +55,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 		Route::post('/upload_files', 'Admin\ChaptersController@uploadFiles')->name('admin.upload_files');
 		//delete uploaded files using ajax
 		Route::post('/delete_files', 'Admin\ChaptersController@deleteFiles')->name('admin.delete_files');
+		//delete uploaded files using ajax
+		Route::post('/delete_uploads', 'Admin\ChaptersUploadsController@deleteUploads')->name('admin.delete_uploads');
 		
 
 	});

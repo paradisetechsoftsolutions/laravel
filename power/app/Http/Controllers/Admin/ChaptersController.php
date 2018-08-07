@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Programs;
 use App\Models\Modules;
 use App\Models\Chapters;
-use App\Models\ChapterUploads;
+use App\Models\ChaptersUploads;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -59,9 +59,9 @@ class ChaptersController extends Controller
         $chapter = Chapters::create($request->all());
       
         //videos
-        if(count($request->videos)>0){
+        if(isset($request->videos) && count($request->videos)>0){
         	foreach($request->videos as $video){
-        		$uploads = new ChapterUploads;
+        		$uploads = new ChaptersUploads;
         		$uploads->chapters_id = $chapter->id;
         		$uploads->name = $video;
         		$uploads->type = 'video';
@@ -69,9 +69,9 @@ class ChaptersController extends Controller
         	}
         }
         //images
-        if(count($request->images)>0){
+        if(isset($request->images) && count($request->images)>0){
         	foreach($request->images as $image){
-        		$uploads = new ChapterUploads;
+        		$uploads = new ChaptersUploads;
         		$uploads->chapters_id = $chapter->id;
         		$uploads->name = $image;
         		$uploads->type = 'image';
@@ -79,9 +79,9 @@ class ChaptersController extends Controller
         	}
         }
         //files
-        if(count($request->filesdata)>0){
+        if(isset($request->filesdata) && count($request->filesdata)>0){
         	foreach($request->filesdata as $file){
-        		$uploads = new ChapterUploads;
+        		$uploads = new ChaptersUploads;
         		$uploads->chapters_id = $chapter->id;
         		$uploads->name = $file;
         		$uploads->type = 'file';
@@ -114,17 +114,76 @@ class ChaptersController extends Controller
     }
 
 
+	/**
+	* Update the specified resource in storage.
+	*
+	* @param ChaptersRequest $request
+	* @param  \App\Models\Programs $program
+	* @param  \App\Models\Modules $module
+	* @param  \App\Models\Chapters $chapter
+	* @return \Illuminate\Http\Response
+	*/
+    public function update(ChaptersRequest $request, Programs $program, Modules $module, Chapters $chapter)
+    {
+        $chapter->update($request->all());
+        //videos
+        if(isset($request->videos) && count($request->videos)>0){
+        	foreach($request->videos as $video){
+        		$uploads = new ChaptersUploads;
+        		$check = $uploads->where('chapters_id', $chapter->id)->where('name', $video)->first();
+        		if(!$check){
+	        		$uploads->chapters_id = $chapter->id;
+	        		$uploads->name = $video;
+	        		$uploads->type = 'video';
+	        		$uploads->save();
+        		}
+        	}
+        }
+        //images
+        if(isset($request->images) && count($request->images)>0){
+        	foreach($request->images as $image){
+        		$uploads = new ChaptersUploads;
+        		$check = $uploads->where('chapters_id', $chapter->id)->where('name', $image)->first();
+        		if(!$check){
+	        		$uploads->chapters_id = $chapter->id;
+	        		$uploads->name = $image;
+	        		$uploads->type = 'image';
+	        		$uploads->save();
+        		}
+        	}
+        }
+        //files
+        if(isset($request->filesdata) && count($request->filesdata)>0){
+        	foreach($request->filesdata as $file){
+        		$uploads = new ChaptersUploads;
+        		$check = $uploads->where('chapters_id', $chapter->id)->where('name', $file)->first();
+        		if(!$check){
+	        		$uploads->chapters_id = $chapter->id;
+	        		$uploads->name = $file;
+	        		$uploads->type = 'file';
+	        		$uploads->save();
+	        	}
+        	}
+        }
 
+        $request->session()->flash('success', "Chapter {$chapter->title} updated!");
+        return redirect()->route('chapters.index', [$program->id, $module->id]);
+    }
 
-
-
-
-
-
-
-
-
-
+    /**
+	* Show the form for show the specified resource.
+	*
+	* @param  \App\Models\Programs $program
+	* @param  \App\Models\Modules $module
+	* @param  \App\Models\Chapters $chapter
+	* @return \Illuminate\Http\Response
+	*/
+    public function show(Programs $program, Modules $module, Chapters $chapter)
+    {
+    	$active = $this->active;
+		$title = $this->title;
+        return view('admin.chapters.show', compact('program', 'module', 'chapter', 'active', 'title'));
+    }
 
 
 

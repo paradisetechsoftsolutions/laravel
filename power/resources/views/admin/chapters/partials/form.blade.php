@@ -14,17 +14,23 @@
 </div>
 
 @if($check=='edit')
-
-@foreach($chapter->chaptersupload as $cha)
-          {{ $cha->name}} 
-@endforeach
-
-
-
+    @foreach($chapter->chaptersupload as $upload)
+        <div class="form-group"><hr>
+            <label>{{ $upload->type }}</label><br>
+            <span class="pull-right deleteThis" data-type="{{ $upload->type }}" data-id="{{ $upload->id }}" data-value="{{ $upload->name }}"><i class="fa fa-trash"></i></span>
+            @if($upload->type=='video')
+                <iframe width="100%" height="345" src="{{ $upload->name }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                <input type="hidden" data-type="video" name="videos[]" value="{{ $upload->name }}">
+            @elseif($upload->type=='image')
+                <img src="{{ asset('uploads/chapters/images/'.$upload->name) }}">
+                <input type="hidden" data-type="images" name="images[]" value="{{ $upload->name }}">
+            @elseif($upload->type=='file')    
+                <a href="{{ asset('uploads/chapters/files/'.$upload->name) }}">{{ $upload->name }}</a>
+                <input type="hidden" data-type="files" name="filesdata[]" value="{{ $upload->name }}">
+            @endif
+        </div>
+    @endforeach
 @endif
-
-
-
 
 <div id="add_new_chart"></div>
 

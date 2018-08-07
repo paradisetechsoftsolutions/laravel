@@ -80,7 +80,7 @@ jQuery(document).on('click', '.removeHtml', function(){
 		$this.parent('.form-group').remove();
 		return;
 	}
-	if(type=='images' || type=='files'){		
+	if(type=='images' || type=='files'){
 		var formData = {value:value, type:type};
 		var postUrl = "admin/delete_files";
 
@@ -99,6 +99,43 @@ jQuery(document).on('click', '.removeHtml', function(){
 		return;
 	}
 });
+
+/**
+*
+* remove html and data on edit page
+* for chapters page
+* use only admin
+*/
+jQuery(document).on('click', '.deleteThis', function(){
+	var $this = jQuery(this);
+	var type = $this.attr('data-type');
+	var id = $this.attr('data-id');
+	var value = $this.attr('data-value');
+	var check=false;
+
+	var formData = {id:id, type:type, value:value};
+	var postUrl = "admin/delete_uploads";
+
+    if (window.confirm("Are you sure?")) {
+        check = true;
+    }
+    if(check==false){
+    	return
+    }
+
+	ajaxRequest1(formData, postUrl, function(res) {
+		//processing the data
+		if(res.response===true){
+			$this.parent('.form-group').remove();
+			alert(type+' deleted');
+		}
+		if(res.response===false){
+			alert(type+' not deleted, try again');
+		}
+	});
+	
+});
+
 
 /**
 *
