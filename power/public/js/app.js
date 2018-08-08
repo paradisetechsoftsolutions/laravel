@@ -1,9 +1,5 @@
 
 
-jQuery('.single-item-slide > a').click( function(){
-var video = jQuery(this).attr('href');
-jQuery('.cstm-play-vid iframe').attr('src',video);
-})
 
 
 jQuery(window).scroll(function() {    

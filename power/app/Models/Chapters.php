@@ -27,6 +27,14 @@ class Chapters extends Model
 
 
     /**
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+    public function modules()
+    {
+        return $this->belongsTo(Modules::class);
+    }
+
+    /**
     * @return \Illuminate\Database\Eloquent\Relations\HasMany
     */
     public function chaptersupload()

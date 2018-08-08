@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-5">
         <div class="site-logo">
-          <a href="{{ url('/') }}"><img src="images/logo.png"></a>
+          <a href="{{ url('/') }}"><img src="{{ asset('images/logo.png') }}"></a>
         </div>
       </div>
       <div class="col-md-7">
@@ -49,10 +49,10 @@
                     </button>
                     <h3>menu</h3>
                     <ul class="nav navbar-nav">
-                      <li class="active"><a href="index.html">Home Page <span class="sr-only">(current)</span></a></li>
+                      <li class="active"><a href="{{ url('/') }}">Home Page <span class="sr-only">(current)</span></a></li>
                       <li><a href="about-us.html">About Us</a></li>
                       <li><a href="stories.html">Success Stories</a></li>
-                      <li><a href="our-program.html">My Programs</a></li>
+                      <li><a href="{{ route('program.index') }}">Our Programs</a></li>
                       <li><a href="contact.html">Contact Us</a></li>
                       <li><a href="acadmy.html">Book With Us</a></li>
                     </ul>

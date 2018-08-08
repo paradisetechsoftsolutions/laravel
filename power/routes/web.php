@@ -19,7 +19,17 @@ Auth::routes();
 
 //auth
 Route::group(['middleware' => 'auth'], function () {		
-	//profile 
+	//our-programs 
+	Route::get('/our-programs', 'ProgramsController@index')->name('program.index');
+	//single program page
+	Route::get('/our-programs/{slug}', 'ProgramsController@preview')->name('program.preview');
+	//details program page
+	Route::get('/our-programs/details/{slug}', 'ProgramsController@details')->name('program.details');
+	//videos program page
+	Route::get('/our-programs/videos/{slug}', 'ProgramsController@videos')->name('program.videos');
+
+
+	//profile
 	Route::get('/profile', 'ProfileController@index')->name('profile.index');
 
 });

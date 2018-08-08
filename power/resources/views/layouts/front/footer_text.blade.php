@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-12 col-sm-4 col-md-4">
                     <div class="ftr-logo">
-                        <img src="images/ftr-logo.jpg">
+                        <img src="{{ asset('images/ftr-logo.jpg') }}">
                     </div>
                 </div>
                 <div class="col-12 col-sm-3 col-md-3">

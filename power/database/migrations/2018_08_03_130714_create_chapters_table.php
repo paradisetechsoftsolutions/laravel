@@ -16,8 +16,8 @@ class CreateChaptersTable extends Migration
         Schema::create('chapters', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('module_id')->unsigned();
-            $table->foreign('module_id')->references('id')->on('modules');
+            $table->integer('modules_id')->unsigned();
+            $table->foreign('modules_id')->references('id')->on('modules');
             
             $table->string('title');
             $table->string('slug')->unique();

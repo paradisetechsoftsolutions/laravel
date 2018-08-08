@@ -4,8 +4,8 @@
 <section id="login-form" class="login-info-main">
     <div class="abt-login">
         <div class="login-logo">
-            <a href="index.html">
-            <img src="images/logo.png">
+            <a href="{{ url('/') }}">
+            <img src="{{ asset('images/logo.png') }}">
             </a>
         </div>
         <div class="inner-login">

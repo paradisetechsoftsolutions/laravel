@@ -33,6 +33,14 @@ class Modules extends Model
         return $this->belongsTo(Programs::class);
     }
 
+    /**
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+    public function chapters()
+    {
+        return $this->hasMany(Chapters::class);
+    }
+
 
 
 }
