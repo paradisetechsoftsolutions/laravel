@@ -11,9 +11,6 @@
 						<div class="buy-btn-crs">
 							<a class="universal-btn" href="{{ route('program.videos', [$program->slug]) }}">video lesson</a>
 						</div>
-						<div class="playcrown-vid">
-							<img src="{{ asset('images/play-icon.png') }}">
-						</div>
 					</div>
 				</div>
 			</div>

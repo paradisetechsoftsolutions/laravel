@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace power\Http\Controllers\Admin;
 
-use App\Models\ChaptersUploads;
+use power\Models\ChaptersUploads;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use power\Http\Controllers\Controller;
 
 class ChaptersUploadsController extends Controller
 {

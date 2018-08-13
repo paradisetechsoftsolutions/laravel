@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace power\Http\Controllers;
 
-use App\Models\Programs;
+use power\Models\Programs;
 use Illuminate\Http\Request;
 
 

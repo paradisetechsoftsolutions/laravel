@@ -1,11 +1,11 @@
 *{
 padding: 0;
-margin:0;	
+margin:0;   
 }
 ul{
-	list-style: none;
-	padding: 0;
-	margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 a, a:hover, a:focus{
 outline: none;
@@ -61,6 +61,24 @@ outline: none;
   src: url('../fonts/FranklinGothic-Book.woff') format('woff'),
        url('../fonts/FranklinGothic-Book.ttf') format('truetype'),
        url('../fonts/FranklinGothic-Book.svg#FranklinGothic-Book') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FranklinGothicDemi';
+  src: url('../fonts/FranklinGothicDemi.eot');
+  src: url('../fonts/FranklinGothicDemi.woff2') format('woff2'),
+       url('../fonts/FranklinGothicDemi.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TFFFranklinGothicDemi';
+  src: url('../fonts/TFFFranklinGothicDemi.woff') format('woff'),
+       url('../fonts/TFFFranklinGothicDemi.ttf') format('truetype'),
+       url('../fonts/TFFFranklinGothicDemi.svg#TFFFranklinGothicDemi') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -212,7 +230,7 @@ section.site-link .row > div {
     margin: auto;
     top: 50%;
     transform: translateY(-50%);
-    opacity: 0;			
+    opacity: 0;         
     transition:all 0.1s ease-in-out 0.1s;
 
 }
@@ -724,7 +742,6 @@ section.common-row {
 /***************************Contact us****************************/
 section.contact-section {
     background: #222222;
-    padding: 60px 0;
 }
 section.contact-section .site-heading.small-heading span {
     background: #222222;
@@ -770,6 +787,7 @@ font-size: 20px;
     background: transparent;
     border-radius: 0;
     padding: 10px 10px;
+    color: #ffffff;
 }
 .contact-support form .form-group textarea.form-control {
     height: 123px;
@@ -818,6 +836,7 @@ spam.add-files i {
 }
 /***************************Contact us****************************/
 /***************************stories****************************/
+
 .success-stories-item > img {
     width: 100%;
 }
@@ -884,13 +903,14 @@ spam.add-files i {
 .cstm-all-stories {
     margin-top: 40px;
 }
-.success-stories-page, .cstm-terms-con {
-    padding: 70px 0;
+.success-stories-page, .cstm-terms-con, .module-section, .contact-section, .main-video-lesson {
+    padding: 60px 0;
     border-bottom: 1px solid #ababab;
 }
 /***************************stories****************************/
 /***************************terms-condition****************************/
-.cstm-terms-con, .our-program, .main-course, .revrsr-div, .cstm-accordion {
+
+.cstm-terms-con, .our-program, .main-course, .revrsr-div, .cstm-accordion, .main-video-lesson, .video-play-list, .cstm-cart-section {
     font-family: Franklin Gothic Book;
 }
 .cstm-terms-con p {
@@ -927,6 +947,7 @@ ul.sub-cond {
 }
 /***************************terms-condition****************************/
 /***************************our program****************************/
+
 .our-program {
     background: #000;
 }
@@ -1103,9 +1124,7 @@ a.universal-btn.bdr-btn {
 .panel-cstm h4.panel-title {
     margin: 0;
 }
-section.module-section {
-    padding: 50px 0;
-}
+
 .panel-heading-flat {
     background: #ff7200;
     padding: 15px;
@@ -1159,9 +1178,233 @@ section.module-section {
     display: block;
 }
 /***********accordion*********/
-
-
-
-
-
 /***************************details****************************/
+
+
+/***************************videos****************************/
+.videos-item-frame iframe {
+    width: 100%;
+    height: 550px;
+}
+.frame-caption h4 {
+    font-size: 64px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+}
+.frame-caption h4 strong {
+    display: block;
+    font-weight: 1000;
+      font-family: FranklinGothicDemi;
+}
+.video-inf h3 {
+    font-family: FranklinGothicDemi;
+    margin-bottom: 20px;
+}
+
+.video-inf {
+    margin: 30px 0 90px;
+}
+a {
+    letter-spacing: 2px;
+}
+.blk-btn a.universal-btn {
+    background: #000;
+}
+.blk-btn {
+    margin-top: 35px;
+}
+.rate-this-course {
+    text-align: right;
+    margin-top: 15px;
+    border-bottom: 1px solid #858585;
+    padding-bottom: 15px;
+}
+.rate-this-course a {
+    color: #fff;
+    background: #2e3530;
+    padding: 4px 10px;
+    display: inline-block;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+.videos-item-frame {
+    position: relative;
+}
+/**************side-bar****************/
+.right-video-bar {background: #363432;padding: 25px;}
+.right-video-bar > h5 {
+    font-size: 28px;
+    letter-spacing: 2px;
+    font-family: FranklinGothicDemi;
+    border-bottom: 1px solid #8a8886;
+    padding-bottom: 6px;
+    margin-bottom: 45px;
+}
+.video-play-list h6.panel-title {
+    margin: 0;
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+}
+.video-play-list h6.panel-title a {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: block;
+    position: relative;
+}
+.video-play-list h6.panel-title a i {
+    position: absolute;
+    right: 20px;
+}
+.ul-list-vid ul li {
+    display: flex;
+    border-bottom: 1px solid #585555;
+       padding: 10px 5px;
+    cursor: pointer;
+}
+.ul-list-vid ul li span {
+    display: block;
+    color: #fff;
+    font-size: 14px;
+}
+.ul-list-vid ul li p {
+    color: #b1aeae;
+    font-size: 17px;
+    margin: 0;
+    width: 100%;
+    padding-left: 22px;
+}
+.ul-list-vid ul li i {
+    color: #14a336;
+    display: inline-block;
+    margin-top: 4px;
+}
+.ul-list-vid ul li:hover {
+    background: #ff7200;
+}
+.ul-list-vid ul li:hover i {
+    color: #fff;
+}
+.ul-list-vid ul li:hover p {
+    color: #fff;
+}
+.ul-list-vid {
+    margin-top: 15px;
+}
+.video-play-list {
+    margin-bottom: 30px;
+}
+.rvb{
+    padding-right: 0;
+}
+.main-video-lesson {
+    padding-left: 5%;
+}
+/***************************videos****************************/
+/***************************cart****************************/
+section.cstm-cart-section {
+    background: #f1f3f6;
+    padding: 60px 0;
+}
+.cstm-cart {
+    width: 100%;
+    border: 1px solid #cfc7c7;
+    background: #fff;
+    padding: 25px;
+}
+.cstm-cart > h4 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #000;
+    font-size: 25px;
+    border-bottom: 1px solid #9a9a9a;
+    padding-bottom: 6px;
+}
+.cstm-cart table.item-table {
+    text-align: center;
+    width: 88%;
+    margin-top: 30px;
+}
+.cstm-cart table.item-table th {
+    padding: 15px 0;
+    border-bottom: 1px solid #d9e0e9;
+    color: #000;
+}
+.cstm-cart table.item-table tr td {
+    padding: 11px 0;
+    border-bottom: 1px solid #d9e0e9;
+}
+.cstm-cart table.item-table tr.pr-total td{
+    border: none;
+}
+/******total********/
+.cart-total-table table {
+    text-align: right;
+    width: 88%;
+}
+a.total_amount {
+    display: inline-block;
+    padding: 7px 15px;
+    border: 1px solid #d9e0e9;
+    margin: 20px 0 40px;
+    color:  #212529;
+    border-radius: 5px;
+}
+.cart_pg_btn {
+    display:  inline-block;
+    text-transform:  uppercase;
+    color: #ffffff;
+    border-radius: 5px;
+}
+a.cont_ship_btn {
+    background-color:  #313131;
+    padding:  10px 15px;
+}
+a.checkout_btn {
+    background-color:  #f26722;
+    padding: 10px 25px;
+    margin-left: 20px;
+}
+.cart_pg_btn:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+/******total********/
+/***************************cart****************************/
+
+/*************************Checkout**************************/
+
+section.checkout-section {
+    background-color:  #222222;
+    padding: 50px 0;
+}
+section.checkout-section .site-heading.small-heading span {
+    background: #222222;
+}
+.contact-support form .form-group select.form-control {
+    height: 46px;
+}
+.contact-support form .form-group .form-control option {
+    background-color: #222;
+}
+label.radio-inline {
+    margin-right: 15px;
+}
+label.radio-inline input {
+    margin-right: 7px;
+}
+.payment_method {
+    margin: 50px 0;
+}
+
+/*********************** Checkout End ***********************/
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-<header  class="site-header home-header">
+<header class="site-header {{ (Request::segment(1))?'sub-header':'home-header' }}">
   <div class="container">
     <div class="row">
       <div class="col-md-5">

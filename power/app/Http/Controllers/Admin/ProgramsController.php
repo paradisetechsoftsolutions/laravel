@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace power\Http\Controllers\Admin;
 
-use App\Models\Programs;
+use power\Models\Programs;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ProgramsRequest;
+use power\Http\Controllers\Controller;
+use power\Http\Requests\Admin\ProgramsRequest;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ProgramsController extends Controller
@@ -60,7 +60,7 @@ class ProgramsController extends Controller
 	/**
 	* Show the form for editing the specified resource.
 	*
-	* @param  \App\Models\Programs $program
+	* @param  \power\Models\Programs $program
 	* @return \Illuminate\Http\Response
 	*/
     public function edit(Programs $program)
@@ -74,7 +74,7 @@ class ProgramsController extends Controller
 	* Update the specified resource in storage.
 	*
 	* @param ProgramsRequest $request
-	* @param  \App\Models\Programs $program
+	* @param  \power\Models\Programs $program
 	* @return \Illuminate\Http\Response
 	*/
     public function update(ProgramsRequest $request, Programs $program)
@@ -94,7 +94,7 @@ class ProgramsController extends Controller
     /**
 	* Show the form for show the specified resource.
 	*
-	* @param  \App\Models\Programs $program
+	* @param  \power\Models\Programs $program
 	* @return \Illuminate\Http\Response
 	*/
     public function show(Programs $program)
@@ -108,7 +108,7 @@ class ProgramsController extends Controller
 	* Remove the specified resource from storage.
 	*
 	* @param Request $request
-	* @param  \App\Models\Programs $program
+	* @param  \power\Models\Programs $program
 	* @return \Illuminate\Http\Response
 	* @throws \Exception
 	*/

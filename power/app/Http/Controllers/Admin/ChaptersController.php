@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace power\Http\Controllers\Admin;
 
-use App\Models\Programs;
-use App\Models\Modules;
-use App\Models\Chapters;
-use App\Models\ChaptersUploads;
+use power\Models\Programs;
+use power\Models\Modules;
+use power\Models\Chapters;
+use power\Models\ChaptersUploads;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ChaptersRequest;
+use power\Http\Controllers\Controller;
+use power\Http\Requests\Admin\ChaptersRequest;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,8 +34,8 @@ class ChaptersController extends Controller
 	/**
 	* Show the form for creating a new Modules.
 	*
-	* @param  \App\Models\Programs $program
-	* @param  \App\Models\Modules $module
+	* @param  \power\Models\Programs $program
+	* @param  \power\Models\Modules $module
 	* @return \Illuminate\Http\Response
 	*/
 	public function create(Programs $program, Modules $module)
@@ -49,8 +49,8 @@ class ChaptersController extends Controller
     /**
 	* Store a newly created resource in storage.
 	*
-	* @param  \App\Models\Programs $program
-	* @param  \App\Models\Modules $module
+	* @param  \power\Models\Programs $program
+	* @param  \power\Models\Modules $module
 	* @param ChaptersRequest $request
 	* @return void
 	*/
@@ -99,9 +99,9 @@ class ChaptersController extends Controller
     /**
 	* Store a newly created resource in storage.
 	*
-	* @param  \App\Models\Programs $program
-	* @param  \App\Models\Modules $module
-	* @param  \App\Models\Chapters $chapter
+	* @param  \power\Models\Programs $program
+	* @param  \power\Models\Modules $module
+	* @param  \power\Models\Chapters $chapter
 	* @param ChaptersRequest $request
 	* @return void
 	*/
@@ -118,9 +118,9 @@ class ChaptersController extends Controller
 	* Update the specified resource in storage.
 	*
 	* @param ChaptersRequest $request
-	* @param  \App\Models\Programs $program
-	* @param  \App\Models\Modules $module
-	* @param  \App\Models\Chapters $chapter
+	* @param  \power\Models\Programs $program
+	* @param  \power\Models\Modules $module
+	* @param  \power\Models\Chapters $chapter
 	* @return \Illuminate\Http\Response
 	*/
     public function update(ChaptersRequest $request, Programs $program, Modules $module, Chapters $chapter)
@@ -173,9 +173,9 @@ class ChaptersController extends Controller
     /**
 	* Show the form for show the specified resource.
 	*
-	* @param  \App\Models\Programs $program
-	* @param  \App\Models\Modules $module
-	* @param  \App\Models\Chapters $chapter
+	* @param  \power\Models\Programs $program
+	* @param  \power\Models\Modules $module
+	* @param  \power\Models\Chapters $chapter
 	* @return \Illuminate\Http\Response
 	*/
     public function show(Programs $program, Modules $module, Chapters $chapter)

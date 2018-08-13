@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace power\Http\Controllers\Admin;
 
-use App\Models\Programs;
-use App\Models\Modules;
+use power\Models\Programs;
+use power\Models\Modules;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ModulesRequest;
+use power\Http\Controllers\Controller;
+use power\Http\Requests\Admin\ModulesRequest;
 
 class ModulesController extends Controller
 {
@@ -16,7 +16,7 @@ class ModulesController extends Controller
 	/**
 	* Show the application Modules.
 	*
-	* @param  \App\Models\Programs $program
+	* @param  \power\Models\Programs $program
 	* @return \Illuminate\Http\Response
 	*/
 	public function index(Programs $program)
@@ -30,7 +30,7 @@ class ModulesController extends Controller
 	/**
 	* Show the form for creating a new Modules.
 	*
-	* @param  \App\Models\Programs $program
+	* @param  \power\Models\Programs $program
 	* @return \Illuminate\Http\Response
 	*/
 	public function create(Programs $program)
@@ -43,7 +43,7 @@ class ModulesController extends Controller
     /**
 	* Store a newly created resource in storage.
 	*
-	* @param  \App\Models\Programs $program
+	* @param  \power\Models\Programs $program
 	* @param ModulesRequest $request
 	* @return void
 	*/
@@ -57,8 +57,8 @@ class ModulesController extends Controller
     /**
 	* Show the form for show the specified resource.
 	*
-	* @param  \App\Models\Programs $program
-	* @param  \App\Models\Modules $module
+	* @param  \power\Models\Programs $program
+	* @param  \power\Models\Modules $module
 	* @return \Illuminate\Http\Response
 	*/
     public function show(Programs $program, Modules $module)
@@ -72,8 +72,8 @@ class ModulesController extends Controller
     /**
 	* Show the form for editing the specified resource.
 	*
-	* @param  \App\Models\Programs $program
-	* @param  \App\Models\Modules $module
+	* @param  \power\Models\Programs $program
+	* @param  \power\Models\Modules $module
 	* @return \Illuminate\Http\Response
 	*/
     public function edit(Programs $program, Modules $module)
@@ -87,8 +87,8 @@ class ModulesController extends Controller
 	* Update the specified resource in storage.
 	*
 	* @param ModulesRequest $request
-	* @param  \App\Models\Programs $program
-	* @param  \App\Models\Modules $module
+	* @param  \power\Models\Programs $program
+	* @param  \power\Models\Modules $module
 	* @return \Illuminate\Http\Response
 	*/
     public function update(ModulesRequest $request, Programs $program, Modules $module)
@@ -103,8 +103,8 @@ class ModulesController extends Controller
 	* Remove the specified resource from storage.
 	*
 	* @param Request $request
-	* @param  \App\Models\Programs $program
-	* @param  \App\Models\Modules $module
+	* @param  \power\Models\Programs $program
+	* @param  \power\Models\Modules $module
 	* @return \Illuminate\Http\Response
 	* @throws \Exception
 	*/
