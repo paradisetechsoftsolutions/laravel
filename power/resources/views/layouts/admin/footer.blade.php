@@ -9,6 +9,8 @@
         <script src="{{ asset('admin/vendor/sparkline/jquery.sparkline.min.js') }}"></script>
         <script src="{{ asset('admin/resources/js/app.min.js') }}"></script>
 
+        <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+        
         <script src="{{ asset('admin/resources/js/demo.js') }}"></script>
         <script src="{{ asset('js/delete.js') }}"></script>
         <script src="{{ asset('js/custom.js') }}"></script>

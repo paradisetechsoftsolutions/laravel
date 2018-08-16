@@ -17,14 +17,16 @@
 		<div class="row">
 			<div class="col-12 col-sm-6 col-md-6">
 				<div class="csr-image">
-					<img src="{{ asset('uploads/programs/'.$program->id.'.png') }}">
+					@if($program->image)
+					<img src="{{ asset('uploads/programs/'.$program->image) }}">
+					@endif
 				</div>
 			</div>
 			<div class="col-12 col-sm-6 col-md-6">
 				<div class="buy-acadmy">
 					<h3>{{ $program->title }}</h3>
 					<div class="crs-descri">
-						<p>{{ $program->description }}</p>
+						{!! $program->description !!}
 					</div>
 					<div class="buy-btn-crs">
 						<a class="universal-btn" href="#">buy now</a>

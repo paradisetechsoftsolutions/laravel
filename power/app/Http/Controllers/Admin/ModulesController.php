@@ -21,7 +21,7 @@ class ModulesController extends Controller
 	*/
 	public function index(Programs $program)
 	{
-		$modules = Modules::all();
+		$modules = Modules::where('programs_id', $program->id)->get();
 		$active = $this->active;
 		$title = $this->title;
 		return view('admin.modules.index', compact('modules', 'program', 'active', 'title'));

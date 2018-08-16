@@ -12,16 +12,18 @@ class Programs extends Model
 	* @var array
 	*/
     protected $fillable = [
-        'title', 'slug', 'description', 'short_video', 'video', 'price', 'active'
+        'title', 'description', 'short_video', 'video', 'price', 'active'
     ];
 
 
     public static function boot()
     {
         parent::boot();
-        static::saving(function ($model) {
-            //create dynamic slug
-            $model->slug = str_slug($model->title);
+
+        // before delete() method call this
+        static::deleting(function($program) {
+            //delete the parents
+            $program->modules()->delete();
         });
     }
 
@@ -33,5 +35,7 @@ class Programs extends Model
     {
         return $this->hasMany(Modules::class);
     }
+
+
 
 }

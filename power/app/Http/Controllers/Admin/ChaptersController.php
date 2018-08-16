@@ -24,7 +24,7 @@ class ChaptersController extends Controller
 	*/
 	public function index(Programs $program, Modules $module)
 	{
-		$chapters = Chapters::all();
+		$chapters = Chapters::where('modules_id', $module->id)->get();
 		$active = $this->active;
 		$title = $this->title;
 		$program_id = request()->segment(3);
@@ -58,20 +58,12 @@ class ChaptersController extends Controller
     {	//echo '<pre>';print_r($request->all());die;
         $chapter = Chapters::create($request->all());
       
-        //videos
-        if(isset($request->videos) && count($request->videos)>0){
-        	foreach($request->videos as $video){
-        		$uploads = new ChaptersUploads;
-        		$uploads->chapters_id = $chapter->id;
-        		$uploads->name = $video;
-        		$uploads->type = 'video';
-        		$uploads->save();
-        	}
-        }
         //images
         if(isset($request->images) && count($request->images)>0){
         	foreach($request->images as $image){
         		$uploads = new ChaptersUploads;
+        		$uploads->programs_id = $program->id;
+        		$uploads->modules_id = $module->id;
         		$uploads->chapters_id = $chapter->id;
         		$uploads->name = $image;
         		$uploads->type = 'image';
@@ -82,6 +74,8 @@ class ChaptersController extends Controller
         if(isset($request->filesdata) && count($request->filesdata)>0){
         	foreach($request->filesdata as $file){
         		$uploads = new ChaptersUploads;
+        		$uploads->programs_id = $program->id;
+        		$uploads->modules_id = $module->id;
         		$uploads->chapters_id = $chapter->id;
         		$uploads->name = $file;
         		$uploads->type = 'file';
@@ -126,25 +120,15 @@ class ChaptersController extends Controller
     public function update(ChaptersRequest $request, Programs $program, Modules $module, Chapters $chapter)
     {
         $chapter->update($request->all());
-        //videos
-        if(isset($request->videos) && count($request->videos)>0){
-        	foreach($request->videos as $video){
-        		$uploads = new ChaptersUploads;
-        		$check = $uploads->where('chapters_id', $chapter->id)->where('name', $video)->first();
-        		if(!$check){
-	        		$uploads->chapters_id = $chapter->id;
-	        		$uploads->name = $video;
-	        		$uploads->type = 'video';
-	        		$uploads->save();
-        		}
-        	}
-        }
+
         //images
         if(isset($request->images) && count($request->images)>0){
         	foreach($request->images as $image){
         		$uploads = new ChaptersUploads;
         		$check = $uploads->where('chapters_id', $chapter->id)->where('name', $image)->first();
         		if(!$check){
+	        		$uploads->programs_id = $program->id;
+	        		$uploads->modules_id = $module->id;
 	        		$uploads->chapters_id = $chapter->id;
 	        		$uploads->name = $image;
 	        		$uploads->type = 'image';
@@ -158,6 +142,8 @@ class ChaptersController extends Controller
         		$uploads = new ChaptersUploads;
         		$check = $uploads->where('chapters_id', $chapter->id)->where('name', $file)->first();
         		if(!$check){
+	        		$uploads->programs_id = $program->id;
+	        		$uploads->modules_id = $module->id;
 	        		$uploads->chapters_id = $chapter->id;
 	        		$uploads->name = $file;
 	        		$uploads->type = 'file';
@@ -270,7 +256,22 @@ class ChaptersController extends Controller
     }
 
 
-
+    /**
+	* Remove the specified resource from storage.
+	*
+	* @param Request $request
+	* @param  \power\Models\Programs $program
+	* @param  \power\Models\Modules $module
+	* @param  \power\Models\Chapters $chapter
+	* @return \Illuminate\Http\Response
+	* @throws \Exception
+	*/
+    public function destroy(Request $request, Programs $program, Modules $module, Chapters $chapter)
+    {
+        $request->session()->flash('error', "Chapter {$chapter->title} deleted!");
+        $chapter->delete();
+        return redirect()->route('chapters.index', [$program->id, $module->id]);
+    }
 
 
 

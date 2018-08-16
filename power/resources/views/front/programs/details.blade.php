@@ -5,7 +5,9 @@
 		<div class="row">
 			<div class="col-12 col-sm-6 col-md-6 revrsr-div">
 				<div class="csr-image">
-					<img src="{{ asset('images/crowd-image.jpg') }}">
+					@if($program->image)
+					<img src="{{ asset('uploads/programs/'.$program->image) }}">
+					@endif
 					<div class="crowd-caption">
 						<h3>{{ $program->title }}</h3>
 						<div class="buy-btn-crs">
@@ -18,7 +20,7 @@
 				<div class="buy-acadmy">
 					<h3>{{ $program->title }}</h3>
 					<div class="crs-descri">
-						<p>{{ $program->description }}</p>
+						{!! $program->description !!}
 					</div>
 					<div class="buy-btn-crs">
 						<a class="universal-btn bdr-btn" href="#">resume</a>
@@ -65,7 +67,7 @@
 												</div>
 												<div id="chapter-{{ $chapter->id }}" class="panel-collapse collapse sub-part-info">
 													<div class="panel-body">
-														<p>{{ $chapter->description }}</p>
+														{!! $chapter->description !!}
 													</div>
 												</div>
 											</div>

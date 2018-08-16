@@ -33,7 +33,7 @@ class ChaptersRequest extends FormRequest
             case 'POST':
             {
                 return [
-                    'title' => 'required|unique:chapters,title',
+                    'title' => 'required|unique:chapters,title|max:150',
                     'description' => 'required',
                     'active' => 'required'
                 ];
@@ -42,7 +42,7 @@ class ChaptersRequest extends FormRequest
             case 'PATCH':
             {
                 return [
-                    'title' => 'required|unique:chapters,title,'.$this->chapter->id,
+                    'title' => 'required|unique:chapters,title,'.$this->chapter->id.'|max:150',
                     'description' => 'required',
                     'active' => 'required'
                 ];

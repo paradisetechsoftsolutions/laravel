@@ -33,7 +33,7 @@ class ModulesRequest extends FormRequest
             case 'POST':
             {
                 return [
-                    'title' => 'required|unique:modules,title',
+                    'title' => 'required|unique:modules,title|max:150',
                     'description' => 'required',
                     'active' => 'required'
                 ];
@@ -42,7 +42,7 @@ class ModulesRequest extends FormRequest
             case 'PATCH':
             {
                 return [
-                    'title' => 'required|unique:modules,title,'.$this->module->id,
+                    'title' => 'required|unique:modules,title,'.$this->module->id.'|max:150',
                     'description' => 'required',
                     'active' => 'required'
                 ];

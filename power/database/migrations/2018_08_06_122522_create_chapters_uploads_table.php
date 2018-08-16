@@ -16,8 +16,15 @@ class CreateChaptersUploadsTable extends Migration
         Schema::create('chapters_uploads', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('programs_id')->unsigned();
+            $table->foreign('programs_id')->references('id')->on('programs');
+            
+            $table->integer('modules_id')->unsigned();
+            $table->foreign('modules_id')->references('id')->on('modules');
+
             $table->integer('chapters_id')->unsigned();
             $table->foreign('chapters_id')->references('id')->on('chapters');
+            
             $table->string('name');
             $table->string('type', 20);
             

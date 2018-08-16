@@ -19,8 +19,8 @@ class CreateModulesTable extends Migration
             $table->integer('programs_id')->unsigned();
             $table->foreign('programs_id')->references('id')->on('programs');
             
-            $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('title', 150)->unique();
+            $table->string('slug', 150);
             $table->text('description');
             $table->enum('active', ['0', '1']);
 

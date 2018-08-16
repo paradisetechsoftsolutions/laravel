@@ -12,16 +12,23 @@ class Modules extends Model
 	* @var array
 	*/
     protected $fillable = [
-        'program_id', 'title', 'slug', 'description', 'active'
+        'programs_id', 'title', 'slug', 'description', 'active'
     ];
 
 
     public static function boot()
     {
         parent::boot();
+        //after save or update method call this
         static::saving(function ($model) {
-            //create dynamic slug
+            //create dynamic slug         
             $model->slug = str_slug($model->title);
+        });
+
+        // before delete() method call this
+        static::deleting(function($module) {
+            //delete the parents
+            $module->chapters()->delete();
         });
     }
 
@@ -40,6 +47,8 @@ class Modules extends Model
     {
         return $this->hasMany(Chapters::class);
     }
+
+
 
 
 

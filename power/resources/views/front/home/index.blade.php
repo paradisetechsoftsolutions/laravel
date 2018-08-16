@@ -109,7 +109,9 @@
             class="homePopup" data-src="{{ $program->short_video }}"
             @endif
             >
-              <img src="{{ asset('uploads/programs/small/'.$program->id.'.png') }}">
+              @if($program->image)
+              <img src="{{ asset('uploads/programs/small/'.$program->image) }}">
+              @endif
               <div class="prog-icon">
                 <img src="images/org-play-icon.png">
               </div>

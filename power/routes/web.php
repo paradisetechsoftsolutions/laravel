@@ -26,8 +26,9 @@ Route::group(['middleware' => 'auth'], function () {
 	//details program page
 	Route::get('/our-programs/details/{slug}', 'ProgramsController@details')->name('program.details');
 	//videos program page
-	Route::get('/our-programs/videos/{slug}', 'ProgramsController@videos')->name('program.videos');
-
+	Route::get('/our-programs/videos/{program}', 'ProgramsController@videos')->name('program.videos');
+	//videos view program page
+	Route::get('/our-programs/videos/{program}/{module}/{chapter}', 'ProgramsController@videos')->name('program.videos.view');
 
 	//profile
 	Route::get('/profile', 'ProfileController@index')->name('profile.index');

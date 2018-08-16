@@ -12,16 +12,23 @@ class Chapters extends Model
 	* @var array
 	*/
     protected $fillable = [
-        'module_id', 'title', 'slug', 'description', 'active'
+        'programs_id', 'modules_id', 'title', 'slug', 'video', 'description', 'active'
     ];
 
 
     public static function boot()
     {
         parent::boot();
+        //after save or update method call this
         static::saving(function ($model) {
             //create dynamic slug
             $model->slug = str_slug($model->title);
+        });
+
+        // before delete() method call this
+        static::deleting(function($chapter) {
+            //delete the parents
+            $chapter->chaptersupload()->delete();
         });
     }
 

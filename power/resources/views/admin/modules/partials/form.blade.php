@@ -1,5 +1,5 @@
 
-{!! Form::hidden('program_id', $program->id) !!}
+{!! Form::hidden('programs_id', $program->id) !!}
 
 <div class="form-group {!! ($errors->has('title') ? 'has-error' : '') !!}">
     {!! Form::label('title','Title', ['class' => 'control-label']) !!}
@@ -19,3 +19,8 @@
     {!! Form::radio('active', 0) !!} No
     {!! $errors->first('active', '<span class="help-block">:message</span>') !!}
 </div>
+@section('script')
+<script>
+CKEDITOR.replace('description');
+</script>
+@endsection

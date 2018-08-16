@@ -2,7 +2,7 @@
 
 
   function checkPermission($permissions){
-    $userAccess = getMyPermission(auth()->user()->role_id);
+    $userAccess = getMyPermission(auth()->user()->roles_id);
     foreach ($permissions as $key => $value) {
       if($value == $userAccess){
         return true;

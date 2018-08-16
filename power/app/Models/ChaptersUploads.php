@@ -12,7 +12,7 @@ class ChaptersUploads extends Model
 	* @var array
 	*/
     protected $fillable = [
-        'chapter_id', 'name', 'type'
+        'programs_id', 'modules_id', 'chapter_id', 'name', 'type'
     ];
 
 

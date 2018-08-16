@@ -3,7 +3,7 @@
 @section('content')
 <section class="sub-banner">
 	<div class="feature-image">
-		<img src="images/our-program-bg.jpg">
+		<img src="{{ asset('images/our-program-bg.jpg') }}">
 		<h4>Our programs</h4>
 	</div>
 </section>
@@ -13,7 +13,9 @@
 			@foreach($programs as $program)
 			<div class="col-12 col-sm-6 col-md-6">
 				<div class="prog-item">
-					<img src="{{ asset('uploads/programs/'.$program->id.'.png') }}">
+					@if($program->image)
+					<img src="{{ asset('uploads/programs/'.$program->image) }}">
+					@endif
 					<div class="prog-hover">
 						<a href="javascript:void(0)">{{ $program->title }}</a>
 						<a href="route('program.preview', [$program->slug])">View Program Preview</a>

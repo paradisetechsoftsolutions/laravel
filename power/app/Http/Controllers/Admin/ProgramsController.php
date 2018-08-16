@@ -49,9 +49,15 @@ class ProgramsController extends Controller
 		//upload image
         if ($request->file('image')) {
         	$path = 'uploads/programs/';
-        	$image = $program->id.'.png';
+        	$image = $program->id. time() .'.png';
         	Image::make($request->file('image'))->resize(500, 350)->save($path.$image);
         	Image::make($request->file('image'))->resize(250, 150)->save($path.'small/'.$image);
+        	$update = new Programs;
+			$update->exists = true;
+			$update->id = $program->id;
+			$update->slug = str_slug($program->title);
+			$update->image = $image;
+			$update->save();
 		}
         $request->session()->flash('success', "Programs {$program->title} created!");
         return redirect()->route('programs.index');
@@ -81,12 +87,24 @@ class ProgramsController extends Controller
     {
         $program->update($request->all());
         //upload image
+        $newImage = '';
         if ($request->file('image')) {
         	$path = 'uploads/programs/';
         	$image = $program->id.'.png';
         	Image::make($request->file('image'))->resize(500, 500)->save($path.$image);
         	Image::make($request->file('image'))->resize(250, 250)->save($path.'small/'.$image);
+        	$newImage = $image;
 		}
+
+		$update = new Programs;
+		$update->exists = true;
+		$update->id = $program->id;
+		$update->slug = str_slug($program->title);
+		if($newImage){
+			$update->image = $newImage;
+		}		
+		$update->save();
+
         $request->session()->flash('success', "Programs {$program->title} updated!");
         return redirect()->route('programs.index');
     }

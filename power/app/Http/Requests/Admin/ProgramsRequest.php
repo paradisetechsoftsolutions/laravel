@@ -33,11 +33,11 @@ class ProgramsRequest extends FormRequest
             case 'POST':
             {
                 return [
-                    'title' => 'required|unique:programs,title',
-                    'price' => 'required',
+                    'title' => 'required|unique:programs,title|max:150',
+                    'price' => 'required|numeric',
                     'image' => 'required|mimetypes:image/jpeg,image/png,image/jpg|max:1024',
-                    'short_video' => 'required',
-                    'video' => 'required',
+                    'short_video' => 'required|max:255',
+                    'video' => 'required|max:255',
                     'description' => 'required',
                     'active' => 'required'
                 ];
@@ -46,11 +46,11 @@ class ProgramsRequest extends FormRequest
             case 'PATCH':
             {
                 return [
-                    'title' => 'required|unique:programs,title,'.$this->program->id,
-                    'price' => 'required',
+                    'title' => 'required|unique:programs,title,'.$this->program->id.'|max:150',
+                    'price' => 'required|numeric',
                     'image' => 'mimetypes:image/jpeg,image/png,image/jpg|max:1024',
-                    'short_video' => 'required',
-                    'video' => 'required',
+                    'short_video' => 'required|max:255',
+                    'video' => 'required|max:255',
                     'description' => 'required',
                     'active' => 'required'
                 ];

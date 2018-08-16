@@ -38,7 +38,7 @@
 						</div>
 						<div class="col-md-4">
 							<span class="show-image pull-right">
-								<img src="{{ asset('uploads/programs/small/'.$program->id.'.png') }}">
+								<img src="{{ asset('uploads/programs/small/'.$program->image) }}">
 							</span>
 						</div>
 

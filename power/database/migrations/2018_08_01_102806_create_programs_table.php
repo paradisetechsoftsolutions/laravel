@@ -16,10 +16,10 @@ class CreateProgramsTable extends Migration
         Schema::create('programs', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('title', 150)->unique();
+            $table->string('slug', 150);
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('short_video');
             $table->string('video');
             $table->decimal('price', 8, 2);

@@ -33,12 +33,15 @@
 						</div>
 
                         <div class="col-md-8">
+                            <div class="form-group"><hr>
+                                <label>Video</label>
+                                <iframe width="100%" height="345" src="{{ $chapter->video }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                            
                             @foreach($chapter->chaptersupload as $upload)
                                 <div class="form-group"><hr>
-                                    <label>{{ $upload->type }}</label><br>
-                                    @if($upload->type=='video')
-                                        <iframe width="100%" height="345" src="{{ $upload->name }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                                    @elseif($upload->type=='image')
+                                    <label>{{ $upload->type }}</label><br>       
+                                    @if($upload->type=='image')
                                         <img src="{{ asset('uploads/chapters/images/'.$upload->name) }}">
                                     @elseif($upload->type=='file')    
                                         <a href="{{ asset('uploads/chapters/files/'.$upload->name) }}">{{ $upload->name }}</a>

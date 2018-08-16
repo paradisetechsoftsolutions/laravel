@@ -1083,7 +1083,6 @@ section.details-section > div .row > div {
 }
 .details-section .buy-acadmy {
     padding-left: 0;
-    transform: translateY(50%);
 }
 .playcrown-vid {
     height: 40px;
@@ -1280,13 +1279,10 @@ a {
     display: inline-block;
     margin-top: 4px;
 }
-.ul-list-vid ul li:hover {
+.ul-list-vid ul li:hover, .ul-list-vid ul li.active {
     background: #ff7200;
 }
-.ul-list-vid ul li:hover i {
-    color: #fff;
-}
-.ul-list-vid ul li:hover p {
+.ul-list-vid ul li a {
     color: #fff;
 }
 .ul-list-vid {

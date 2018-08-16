@@ -22,22 +22,6 @@ function newChart(type){
 	unsaved = true;
 }
 
-//add video html
-function videoFun(){
-	HTML = '\
-	<div class="form-group"><hr>\
-		<label>Add Video Link</label>\
-		<span class="pull-right removeHtml"><i class="fa fa-trash"></i></span>\
-		<div class="input-group">\
-			<input type="url" class="form-control" required>\
-			<div class="input-group-addon video btn btn-success">Get</div>\
-		</div>\
-		<span class="help-block"></span>\
-	</div>\
-	';
-	jQuery('#add_new_chart').append(HTML);
-}
-
 //add image html
 function imageFun(){
 	HTML = '\
@@ -228,9 +212,7 @@ jQuery(document).on('click', '.video', function () {
 	fileData = parseVideo(fileData);
 	if(fileData){
 		var src = jQuery(fileData).attr('src');
-		$click.parents('.input-group').hide();		
-		$click.parents('.input-group').after(fileData);
-		$this.after('<input type="hidden" data-type="video" name="videos[]" value="'+src+'">');
+        $this.find('input[type=url]').val(src);
 	}
 	else {
 		$this.addClass('has-error');
@@ -252,7 +234,7 @@ function parseVideo (input) {
 	var pattern2 = /(?:http?s?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g;
 
     if (pattern2.test(input)) {
-		var replacement = '<iframe width="100%" height="345" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
+		var replacement = '<iframe width="100%" height="300" src="https://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
 		var input = input.replace(pattern2, replacement);
 		// For start time, turn get param & into ?
 		var input = input.replace('&amp;t=', '?t=');
@@ -260,7 +242,7 @@ function parseVideo (input) {
 	}
 
 	else if (pattern1.test(input)) {
-		var replacement = '<iframe width="100%" height="345" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		var replacement = '<iframe width="100%" height="300" src="https://player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
 		var input = input.replace(pattern1, replacement);
 		return input;
 	}

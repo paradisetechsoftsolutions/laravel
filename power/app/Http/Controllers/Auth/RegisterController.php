@@ -67,7 +67,7 @@ class RegisterController extends Controller
         $lname = @($name[1])?$name[1]:'';
         $password = '123456';
         return User::create([
-            'role_id' => 2,
+            'roles_id' => 2,
             'fname' => $fname,
             'lname' => $lname,
             'email' => $data['email'],
