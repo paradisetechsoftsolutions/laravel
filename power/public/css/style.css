@@ -989,8 +989,10 @@ ul.sub-cond {
     height: 100%;
     text-align: center;
     text-decoration: none;
-    display: flex;
+    font-size: 0;
+         transition:all 0.2s ease-in-out 0.2s;
 }
+
 .prog-hover a span {
     margin: auto;
     text-transform: uppercase;
@@ -999,16 +1001,25 @@ ul.sub-cond {
     font-size: 0;
      transition:all 0.2s ease-in-out 0.2s;
 }
-.prog-item:hover a span{
+.hvr-inner {
+    margin: auto;
+}
+.prog-item:hover a {
 font-size: 16px;
 }
-.prog-item:hover .prog-hover{
+.prog-item:hover .prog-hover {
     width: 100%;
     height: 100%;
+}
+.prog-item .prog-hover {
+    display: flex;
 }
 .prog-item:hover .prog-btn{
 opacity: 0;
 
+}
+.prog-item {
+    margin: 15px 0;
 }
 /***************************our program****************************/
 /***************************acadmy****************************/
@@ -1021,7 +1032,7 @@ opacity: 0;
 section.main-course {
     background: #141414;
     color: #fff;
-        padding-bottom: 15px;
+        padding-bottom: 42px;
 }
 .crs-heading h2 {
     margin: 0;
@@ -1343,7 +1354,7 @@ a.total_amount {
     display: inline-block;
     padding: 7px 15px;
     border: 1px solid #d9e0e9;
-    margin: 20px 0 40px;
+    margin: 20px 0 30px;
     color:  #212529;
     border-radius: 5px;
 }
@@ -1353,19 +1364,43 @@ a.total_amount {
     color: #ffffff;
     border-radius: 5px;
 }
-a.cont_ship_btn {
+.cont_ship_btn {
     background-color:  #313131;
     padding:  10px 15px;
 }
-a.checkout_btn {
+.checkout_btn {
     background-color:  #f26722;
     padding: 10px 25px;
     margin-left: 20px;
+        color: #fff;
+    border-radius: 5px;
 }
 .cart_pg_btn:hover {
     color: #ffffff;
     text-decoration: none;
 }
+.cart_total_outr.pull-right {
+    width:  100%;
+    text-align:  right;
+}
+.cstm-cart table.item-table {
+    width: 100%;
+}
+.cart_p_cont {
+    width: 700px;
+    margin:  auto;
+}
+img.cart_table_img {
+    height:  80px;
+    width:  auto;
+}
+
+
+
+
+
+
+
 /******total********/
 /***************************cart****************************/
 
@@ -1398,9 +1433,226 @@ label.radio-inline input {
 
 
 
+/*Payment Detail page*/
+
+.payment-sec{
+           background: #fff !important;
+}
+.payment-sec h2{
+        font-size: 24px;
+    color: #000;
+    text-transform: uppercase;
+   
+    font-weight: 400;
+    border-bottom: 1px solid #9a9a9a;
+     font-family: 'Franklin Gothic Book';
+     
+}
+.payment-sec .box{
+        margin: 35px 0px;
+        border:1px solid #cfc7c7;
+        padding-bottom:30px;
+}
+.payment-sec .box h3{
+    font-size: 22px;
+    background: #f85525;
+    color: #fff;
+    font-weight: 400;
+    padding: 10px 20px;
+     font-family: 'Franklin Gothic Book';
+     margin:0px;
+}
+
+.payment-sec .box .rdio {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.payment-sec .box .rdio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.payment-sec .box .checkmark {
+         position: absolute;
+    top: 19px;
+    left: 14px;
+    height: 16px;
+    width: 16px;
+    background-color: #eee;
+    border-radius: 50%;
+    border: 2px solid #f85525;
+}
 
 
 
+/* When the radio button is checked, add a blue background */
+.payment-sec .box  input:checked ~ .checkmark {
+      background-color: #f85525;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.payment-sec .box .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.payment-sec .box .rdio input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.payment-sec .box .rdio .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background:transparent;
+}
+
+.payment-sec .box .rdio {
+        font-size: 22px;
+    color: #000;
+    font-family: 'Franklin Gothic Book';
+    font-weight: 400;
+    /* margin: 0px 26px; */
+    /* padding: 0; */
+    padding-left: 45px;
+    padding-top: 11px;
+    border-bottom: 1px solid #d2d2d2;
+    margin: 0;
+    padding-bottom: 6px;
+    
+}
+.payment-sec .box .rdio p{
+    color:#959494;
+    font-size:16px;
+     font-family: 'Franklin Gothic Book';
+    font-weight: 400;
+}
+
+.payment-sec a.checkout_btn {
+       background-color: #f26722;
+    float: right;
+    margin: 0px;
+    font-family: 'Franklin Gothic Book';
+    padding: 11px 13px;
+}
 
 
+.payment-sec .card .card-header .btn-link {
+    font-weight: 400;
+    color: #101010;
+    background-color: transparent;
+    text-decoration: none;
+    font-size: 16px;
+    text-transform:uppercase;
+     font-family: 'Franklin Gothic Book';
+}
+.payment-sec .card .card-header {
+    background-color: #fff;
+}
+.payment-sec .card .card-body{
+            background: #f3f3f3;
+    padding: 30px;
+}
+.payment-sec #collapseThree{
+    background: #f3f3f3;
+    padding-bottom: 30px;
+}
+.payment-sec .card-header {
+    border-bottom: 1px solid #a7a6a6;
+}
+.payment-sec .card {
+    border: 1px solid #a7a6a6;
+}
+.payment-sec .card .card-body .content h4{
+      font-size: 16px;
+    color: #101010;
+    text-transform: uppercase;
+    font-family: 'Franklin Gothic Book';
+    width: 90%;
+    margin: 15px 0px;
+}
+.green{
+    color:#408012 !important;
+    font-size:14px !important;
+}
+.br-top{
+        border-top: 1px solid #ded7d7;
+}
+.payment-sec .card .card-body .content h4 span{
+              width: 30%;
+    text-align: center;
+    display: inline-block;
+    float: right;
+}
 
+
+/*********17/8/17*******************/
+.modal-header {
+    display:  none;
+}
+
+.modal-dialog {
+    transform: translateY(-50%);
+    transfrom: translate(-50%);
+}
+
+.success-popup .modal-dialog {
+    max-width: 60%;
+    transform: translateY(50%) !important;
+}
+.details-section .buy-acadmy {
+    padding: 42px 0;
+}
+.csr-image {
+    padding: 26px 0px;
+}
+.prog-hover a {
+    color: #000;
+}
+.img-layer:before {
+    width: 100%;
+    content: "";
+    background: #00000030;
+    height:  100%;
+    top: 0;
+    left:  0;
+    position:  absolute;
+}
+
+
+.img-layer {
+    position:  relative;
+}
+
+.csr-image a.universal-btn {
+    background: #fff !important;
+    color: #000;
+}
+
+.alert {
+    width: 100%;
+}
+.empty-cart {
+    text-align:  center;
+    margin:  auto;
+}
+.empty-cart h4 {
+    margin-bottom: 30px;
+}

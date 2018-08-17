@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-sm-6 col-md-6 revrsr-div">
-				<div class="csr-image">
+				<div class="csr-image img-layer">
 					@if($program->image)
 					<img src="{{ asset('uploads/programs/'.$program->image) }}">
 					@endif

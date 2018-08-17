@@ -4,7 +4,7 @@ namespace power\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Checkout extends Model
+class Carts extends Model
 {
     /**
 	* The attributes that are mass assignable.
@@ -22,6 +22,4 @@ class Checkout extends Model
     {
         return $this->belongsTo(Programs::class);
     }
-
-
 }

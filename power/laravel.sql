@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 16, 2018 at 07:08 PM
+-- Generation Time: Aug 17, 2018 at 07:09 PM
 -- Server version: 5.7.23-0ubuntu0.18.04.1
 -- PHP Version: 7.1.19-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -19,6 +19,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `laravel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `carts`
+--
+
+CREATE TABLE `carts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `users_id` int(10) UNSIGNED NOT NULL,
+  `programs_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `carts`
+--
+
+INSERT INTO `carts` (`id`, `users_id`, `programs_id`, `created_at`, `updated_at`) VALUES
+(14, 1, 4, '2018-08-17 07:27:33', '2018-08-17 07:27:33');
 
 -- --------------------------------------------------------
 
@@ -67,20 +88,6 @@ CREATE TABLE `chapters_uploads` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `checkout`
---
-
-CREATE TABLE `checkout` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `users_id` int(10) UNSIGNED NOT NULL,
-  `programs_id` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `migrations`
 --
 
@@ -102,7 +109,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2018_08_02_125746_create_modules_table', 4),
 (20, '2018_08_03_130714_create_chapters_table', 4),
 (21, '2018_08_06_122522_create_chapters_uploads_table', 4),
-(22, '2018_08_16_131518_create_checkout_table', 5);
+(23, '2018_08_16_133403_create_carts_table', 5);
 
 -- --------------------------------------------------------
 
@@ -226,6 +233,14 @@ INSERT INTO `users` (`id`, `roles_id`, `fname`, `lname`, `email`, `password`, `v
 --
 
 --
+-- Indexes for table `carts`
+--
+ALTER TABLE `carts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cart_users_id_foreign` (`users_id`),
+  ADD KEY `cart_programs_id_foreign` (`programs_id`);
+
+--
 -- Indexes for table `chapters`
 --
 ALTER TABLE `chapters`
@@ -242,14 +257,6 @@ ALTER TABLE `chapters_uploads`
   ADD KEY `chapters_uploads_programs_id_foreign` (`programs_id`),
   ADD KEY `chapters_uploads_modules_id_foreign` (`modules_id`),
   ADD KEY `chapters_uploads_chapters_id_foreign` (`chapters_id`);
-
---
--- Indexes for table `checkout`
---
-ALTER TABLE `checkout`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `checkout_users_id_foreign` (`users_id`),
-  ADD KEY `checkout_programs_id_foreign` (`programs_id`);
 
 --
 -- Indexes for table `migrations`
@@ -297,6 +304,11 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `carts`
+--
+ALTER TABLE `carts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
 -- AUTO_INCREMENT for table `chapters`
 --
 ALTER TABLE `chapters`
@@ -305,17 +317,12 @@ ALTER TABLE `chapters`
 -- AUTO_INCREMENT for table `chapters_uploads`
 --
 ALTER TABLE `chapters_uploads`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `checkout`
---
-ALTER TABLE `checkout`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `modules`
 --
@@ -325,7 +332,7 @@ ALTER TABLE `modules`
 -- AUTO_INCREMENT for table `programs`
 --
 ALTER TABLE `programs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -341,6 +348,13 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `carts`
+--
+ALTER TABLE `carts`
+  ADD CONSTRAINT `cart_programs_id_foreign` FOREIGN KEY (`programs_id`) REFERENCES `programs` (`id`),
+  ADD CONSTRAINT `cart_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
+
+--
 -- Constraints for table `chapters`
 --
 ALTER TABLE `chapters`
@@ -354,13 +368,6 @@ ALTER TABLE `chapters_uploads`
   ADD CONSTRAINT `chapters_uploads_chapters_id_foreign` FOREIGN KEY (`chapters_id`) REFERENCES `chapters` (`id`),
   ADD CONSTRAINT `chapters_uploads_modules_id_foreign` FOREIGN KEY (`modules_id`) REFERENCES `modules` (`id`),
   ADD CONSTRAINT `chapters_uploads_programs_id_foreign` FOREIGN KEY (`programs_id`) REFERENCES `programs` (`id`);
-
---
--- Constraints for table `checkout`
---
-ALTER TABLE `checkout`
-  ADD CONSTRAINT `checkout_programs_id_foreign` FOREIGN KEY (`programs_id`) REFERENCES `programs` (`id`),
-  ADD CONSTRAINT `checkout_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `modules`

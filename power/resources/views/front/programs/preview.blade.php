@@ -2,7 +2,7 @@
 @section('content')
 <section class="home-video">
 	<div class="vid-sec">
-		<iframe width="100%" height="315" src="{{ $program->short_video }}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+		<iframe width="100%" height="100%" src="{{ $program->short_video }}?autoplay=1" frameborder="0" allowfullscreen></iframe>
 	</div>
 	<div class="vid-caption">
 		<h2>{{ $program->title }}</h2>
@@ -29,7 +29,17 @@
 						{!! $program->description !!}
 					</div>
 					<div class="buy-btn-crs">
-						<a class="universal-btn" href="#">buy now</a>
+
+						<a class="universal-btn" href="{{ route('cart.store') }}" onclick="event.preventDefault(); document.getElementById('buynow-form').submit();">
+						{{ __('buy now') }}
+						</a>
+
+						<form id="buynow-form" action="{{ route('cart.store') }}" method="POST" style="display: none;">
+							@csrf
+							<input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
+							<input type="hidden" name="programs_id" value="{{ $program->id }}">
+						</form>
+
 					</div>
 				</div>
 			</div>

@@ -33,6 +33,13 @@ Route::group(['middleware' => 'auth'], function () {
 	//profile
 	Route::get('/profile', 'ProfileController@index')->name('profile.index');
 
+
+	//cart
+	Route::resource('/cart', 'CartsController')->only(['index', 'store', 'destroy']);
+	Route::get('/cart/payment', 'CartsController@payment')->name('cart.payment');
+	Route::post('/cart/payment', 'CartsController@payment')->name('cart.payment');
+	
+
 });
 
 
