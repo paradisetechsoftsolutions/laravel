@@ -11,6 +11,7 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('js/delete.js') }}"></script>
+<script src="{{ asset('js/scripts.js') }}"></script>
 <script>var BASE_URL = jQuery('meta[name="site-url"]').attr('content');</script> 
 @yield('script')
 </body>
