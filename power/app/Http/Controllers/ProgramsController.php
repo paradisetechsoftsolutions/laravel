@@ -17,7 +17,9 @@ class ProgramsController extends Controller
 	public function index()
 	{
 		$programs = Programs::all();
-		return view('front.programs.index', compact('programs'));
+		$active = 'programs';
+		$title = 'Programs';
+		return view('front.programs.index', compact('programs', 'active', 'title'));
 	}
 
  	/**
@@ -29,7 +31,9 @@ class ProgramsController extends Controller
 	public function preview(Request $request)
 	{
 		$program = Programs::where('slug', $request->slug)->first();
-		return view('front.programs.preview', compact('program'));
+		$active = 'programs';
+		$title = $program->title;
+		return view('front.programs.preview', compact('program', 'active', 'title'));
 	}
 
 	/**
@@ -41,7 +45,9 @@ class ProgramsController extends Controller
 	public function details(Request $request)
 	{
 		$program = Programs::where('slug', $request->slug)->first();
-		return view('front.programs.details', compact('program'));
+		$active = 'programs';
+		$title = $program->title;
+		return view('front.programs.details', compact('program', 'active', 'title'));
 	}
 
 	/**
@@ -54,13 +60,18 @@ class ProgramsController extends Controller
 	{
 		$module = $chapter = '';
 		$program = Programs::where('slug', $request->program)->first();
+		$title = $program->title;
 		if($request->module){
 			$module = Modules::where('slug', $request->module)->first();
+			$title = $module->title;
 		}
 		if($request->chapter){
 			$chapter = Chapters::where('slug', $request->chapter)->first();
-		}		
-		return view('front.programs.videos', compact('program', 'module', 'chapter'));
+			$title = $chapter->title;
+		}
+		$active = 'programs';
+		
+		return view('front.programs.videos', compact('program', 'module', 'chapter', 'active', 'title'));
 	}
 
 

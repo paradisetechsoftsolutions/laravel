@@ -99,8 +99,9 @@
                 <li><a href="javascript:void(0)">{{ Auth::user()->fname }} {{ Auth::user()->lname }}</a>
                   <ul class="sub-profile-info">
                     <li><a href="{{ route('profile.index') }}">Profile</a></li>
+                    <li><a href="{{ route('settings.profile') }}">Settings</a></li>
 
-                    @if(Auth::user()->role_id==1)
+                    @if(Auth::user()->roles_id==1)
                     <li><a href="{{ route('admin.dashboard.index') }}">Admin</a></li>
                     @endif
                     <li>

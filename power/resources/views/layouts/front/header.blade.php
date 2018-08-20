@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="site-url" content="{{ asset('/') }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title }}</title>
 
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -22,29 +22,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-<style type="text/css">
- ul.sub-profile-info {
-    position: absolute;
-    background: #f35f2a;
-    color: #fff;
-    display: none;
-}
-.login-info > ul > li:hover  ul.sub-profile-info{
-  display: block;
-}
-ul.sub-profile-info li {
-    display:  inline-block;
-    width: 100%;
-    margin: 0;
-    text-align:  left;
-}
 
-ul.sub-profile-info li a {
-    display:  block;
-    padding: 10px;
-}
-
-</style>
 
   </head>
   <body>

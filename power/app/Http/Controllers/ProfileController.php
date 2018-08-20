@@ -14,7 +14,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('front.profile.index');
+    	$active = 'profile';
+		$title = 'My Profile';
+        return view('front.profile.index', compact('active', 'title'));	
     }
 
 

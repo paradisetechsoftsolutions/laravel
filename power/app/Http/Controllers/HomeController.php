@@ -17,7 +17,9 @@ class HomeController extends Controller
     public function index()
     {
         $programs = Programs::take(4)->get();
-        return view('front.home.index', compact('programs'));
+        $active = 'home';
+        $title = 'Home';
+        return view('front.home.index', compact('programs', 'active', 'title'));
     }
 
 
