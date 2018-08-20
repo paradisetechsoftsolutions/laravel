@@ -8,7 +8,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="site-url" content="{{ asset('/') }}">
-    <title>{{ $title }}</title>
+    @php($mtitle='')
+    @if(Request::segment(1)=='login')
+    @php($mtitle='Login')
+    @elseif(Request::segment(1)=='register')
+    @php($mtitle='Registration')
+    @else
+    @php($mtitle=@$title)
+    @endif
+    <title>{{ $mtitle }}</title>
 
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
